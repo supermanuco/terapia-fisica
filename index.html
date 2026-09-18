@@ -298,11 +298,16 @@
             Elige tu Avatar:
           </label>
           <div class="grid grid-cols-5 gap-2">
-            <button type="button" onclick="selectAvatar('👩‍⚕️')" class="avatar-opt p-2 rounded-2xl border-2 border-brand-500 bg-brand-500/10 text-2xl flex items-center justify-center hover:scale-105 transition" data-avatar="👩‍⚕️">👩‍⚕️</button>
-            <button type="button" onclick="selectAvatar('👨‍⚕️')" class="avatar-opt p-2 rounded-2xl border border-slate-200 dark:border-darkborder bg-slate-50 dark:bg-darksurface text-2xl flex items-center justify-center hover:scale-105 transition" data-avatar="👨‍⚕️">👨‍⚕️</button>
-            <button type="button" onclick="selectAvatar('🧠')" class="avatar-opt p-2 rounded-2xl border border-slate-200 dark:border-darkborder bg-slate-50 dark:bg-darksurface text-2xl flex items-center justify-center hover:scale-105 transition" data-avatar="🧠">🧠</button>
-            <button type="button" onclick="selectAvatar('🦴')" class="avatar-opt p-2 rounded-2xl border border-slate-200 dark:border-darkborder bg-slate-50 dark:bg-darksurface text-2xl flex items-center justify-center hover:scale-105 transition" data-avatar="🦴">🦴</button>
-            <button type="button" onclick="selectAvatar('⚡')" class="avatar-opt p-2 rounded-2xl border border-slate-200 dark:border-darkborder bg-slate-50 dark:bg-darksurface text-2xl flex items-center justify-center hover:scale-105 transition" data-avatar="⚡">⚡</button>
+            <button type="button" onclick="selectAvatar('👨‍⚕️')" class="avatar-opt p-2 rounded-2xl border-2 border-brand-500 bg-brand-500/10 text-2xl flex items-center justify-center hover:scale-105 transition" data-avatar="👨‍⚕️" title="Terapeuta Hombre">👨‍⚕️</button>
+            <button type="button" onclick="selectAvatar('👩‍⚕️')" class="avatar-opt p-2 rounded-2xl border border-slate-200 dark:border-darkborder bg-slate-50 dark:bg-darksurface text-2xl flex items-center justify-center hover:scale-105 transition" data-avatar="👩‍⚕️" title="Terapeuta Mujer">👩‍⚕️</button>
+            <button type="button" onclick="selectAvatar('🧑‍⚕️')" class="avatar-opt p-2 rounded-2xl border border-slate-200 dark:border-darkborder bg-slate-50 dark:bg-darksurface text-2xl flex items-center justify-center hover:scale-105 transition" data-avatar="🧑‍⚕️" title="Estudiante de Salud">🧑‍⚕️</button>
+            <button type="button" onclick="selectAvatar('🏃‍♂️')" class="avatar-opt p-2 rounded-2xl border border-slate-200 dark:border-darkborder bg-slate-50 dark:bg-darksurface text-2xl flex items-center justify-center hover:scale-105 transition" data-avatar="🏃‍♂️" title="Rehab Deportiva Hombre">🏃‍♂️</button>
+            <button type="button" onclick="selectAvatar('🏃‍♀️')" class="avatar-opt p-2 rounded-2xl border border-slate-200 dark:border-darkborder bg-slate-50 dark:bg-darksurface text-2xl flex items-center justify-center hover:scale-105 transition" data-avatar="🏃‍♀️" title="Rehab Deportiva Mujer">🏃‍♀️</button>
+            <button type="button" onclick="selectAvatar('🩺')" class="avatar-opt p-2 rounded-2xl border border-slate-200 dark:border-darkborder bg-slate-50 dark:bg-darksurface text-2xl flex items-center justify-center hover:scale-105 transition" data-avatar="🩺" title="Estetoscopio">🩺</button>
+            <button type="button" onclick="selectAvatar('💪')" class="avatar-opt p-2 rounded-2xl border border-slate-200 dark:border-darkborder bg-slate-50 dark:bg-darksurface text-2xl flex items-center justify-center hover:scale-105 transition" data-avatar="💪" title="Musculatura">💪</button>
+            <button type="button" onclick="selectAvatar('🧠')" class="avatar-opt p-2 rounded-2xl border border-slate-200 dark:border-darkborder bg-slate-50 dark:bg-darksurface text-2xl flex items-center justify-center hover:scale-105 transition" data-avatar="🧠" title="Neurología">🧠</button>
+            <button type="button" onclick="selectAvatar('🦴')" class="avatar-opt p-2 rounded-2xl border border-slate-200 dark:border-darkborder bg-slate-50 dark:bg-darksurface text-2xl flex items-center justify-center hover:scale-105 transition" data-avatar="🦴" title="Huesos">🦴</button>
+            <button type="button" onclick="selectAvatar('⚡')" class="avatar-opt p-2 rounded-2xl border border-slate-200 dark:border-darkborder bg-slate-50 dark:bg-darksurface text-2xl flex items-center justify-center hover:scale-105 transition" data-avatar="⚡" title="Electroterapia">⚡</button>
           </div>
         </div>
       </div>
@@ -1002,7 +1007,7 @@
     }
 
     // ==================== ONBOARDING & MULTI-STUDENT PROFILES ====================
-    let selectedAvatarChar = '👩‍⚕️';
+    let selectedAvatarChar = '👨‍⚕️';
 
     function selectAvatar(char) {
       selectedAvatarChar = char;
@@ -1027,10 +1032,12 @@
       const key = nameVal.toLowerCase();
       if (allProfiles[key]) {
         state = allProfiles[key];
+        state.name = nameVal;
+        state.avatar = selectedAvatarChar || state.avatar || '👨‍⚕️';
       } else {
         state = {
           name: nameVal,
-          avatar: selectedAvatarChar || '👩‍⚕️',
+          avatar: selectedAvatarChar || '👨‍⚕️',
           xp: 0,
           level: 1,
           answered: {},
