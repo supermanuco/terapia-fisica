@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-  <title>Morfofisiología I | TS Rehabilitación Física</title>
+  <title>Terapia Física | Morfofisiología I</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
@@ -94,6 +94,94 @@
 </head>
 <body class="bg-anatomy text-slate-800 dark:text-slate-100 h-screen w-screen flex flex-col overflow-hidden transition-colors duration-200">
 
+  
+  <!-- ==================== SUBJECTS / MATERIAS CATALOG MODAL ==================== -->
+  <div id="modal-subjects" class="fixed inset-0 z-50 bg-black/85 backdrop-blur-md hidden flex items-center justify-center p-4 transition-all duration-300">
+    <div class="bg-white dark:bg-darkcard border border-slate-200 dark:border-darkborder rounded-3xl p-6 sm:p-7 max-w-lg w-full shadow-2xl space-y-4 text-left">
+      
+      <div class="flex items-center justify-between border-b border-slate-100 dark:border-darkborder pb-3">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-2xl bg-gradient-to-tr from-brand-600 to-teal-400 text-white flex items-center justify-center text-xl shadow-md shadow-brand-500/20">
+            📚
+          </div>
+          <div>
+            <span class="text-[10px] font-bold uppercase tracking-widest px-2 py-0.5 rounded-full bg-brand-500/10 text-brand-400 border border-brand-500/20">
+              Carrera: Terapia Física
+            </span>
+            <h3 class="text-base sm:text-lg font-extrabold font-heading text-slate-900 dark:text-white mt-0.5">
+              Catálogo de Materias
+            </h3>
+          </div>
+        </div>
+        <button onclick="closeSubjectModal()" class="w-8 h-8 rounded-xl bg-slate-100 dark:bg-darksurface text-slate-500 hover:text-slate-900 dark:hover:text-white text-xs font-bold transition flex items-center justify-center">
+          ✕
+        </button>
+      </div>
+
+      <div class="space-y-2.5 max-h-[340px] overflow-y-auto pr-1">
+        <!-- Active Subject 1: Morfofisiología I -->
+        <div class="p-3.5 rounded-2xl border-2 border-emerald-500 bg-emerald-500/10 dark:bg-emerald-950/20 flex items-center justify-between shadow-sm">
+          <div class="space-y-0.5">
+            <div class="flex items-center gap-2">
+              <span class="text-xs sm:text-sm font-extrabold text-emerald-600 dark:text-emerald-400">🦴 1. Morfofisiología I</span>
+              <span class="text-[9px] font-extrabold px-2 py-0.5 rounded-full bg-emerald-500 text-white shadow-sm">✓ ACTIVA</span>
+            </div>
+            <p class="text-[11px] text-slate-600 dark:text-slate-300">
+              154 preguntas oficiales • 9 unidades • Flashcards, simulador y minijuegos.
+            </p>
+          </div>
+        </div>
+
+        <!-- Future Subject 2 -->
+        <div class="p-3.5 rounded-2xl border border-slate-200 dark:border-darkborder bg-slate-50/50 dark:bg-darksurface/50 flex items-center justify-between opacity-75">
+          <div class="space-y-0.5">
+            <div class="flex items-center gap-2">
+              <span class="text-xs sm:text-sm font-bold text-slate-700 dark:text-slate-300">🤸‍♀️ 2. Kinesiología y Biomecánica</span>
+              <span class="text-[9px] font-bold px-2 py-0.5 rounded-full bg-slate-200 dark:bg-slate-700 text-slate-600 dark:text-slate-400">Próximamente</span>
+            </div>
+            <p class="text-[11px] text-slate-400">
+              Análisis del movimiento humano, palancas y cinemática articular.
+            </p>
+          </div>
+        </div>
+
+        <!-- Future Subject 3 -->
+        <div class="p-3.5 rounded-2xl border border-slate-200 dark:border-darkborder bg-slate-50/50 dark:bg-darksurface/50 flex items-center justify-between opacity-75">
+          <div class="space-y-0.5">
+            <div class="flex items-center gap-2">
+              <span class="text-xs sm:text-sm font-bold text-slate-700 dark:text-slate-300">🩹 3. Fisioterapia en Traumatología</span>
+              <span class="text-[9px] font-bold px-2 py-0.5 rounded-full bg-slate-200 dark:bg-slate-700 text-slate-600 dark:text-slate-400">Próximamente</span>
+            </div>
+            <p class="text-[11px] text-slate-400">
+              Rehabilitación de fracturas, esguinces, luxaciones y prótesis.
+            </p>
+          </div>
+        </div>
+
+        <!-- Future Subject 4 -->
+        <div class="p-3.5 rounded-2xl border border-slate-200 dark:border-darkborder bg-slate-50/50 dark:bg-darksurface/50 flex items-center justify-between opacity-75">
+          <div class="space-y-0.5">
+            <div class="flex items-center gap-2">
+              <span class="text-xs sm:text-sm font-bold text-slate-700 dark:text-slate-300">⚡ 4. Agentes Físicos y Electroterapia</span>
+              <span class="text-[9px] font-bold px-2 py-0.5 rounded-full bg-slate-200 dark:bg-slate-700 text-slate-600 dark:text-slate-400">Próximamente</span>
+            </div>
+            <p class="text-[11px] text-slate-400">
+              Termoterapia, crioterapia, ultrasonido, TENS y corrientes rusas.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="p-3 rounded-2xl bg-brand-500/10 border border-brand-500/20 text-center text-xs text-brand-600 dark:text-brand-300">
+        💡 <em>Estás en la materia <strong>Morfofisiología I</strong>. En futuras actualizaciones podrás alternar entre materias o subir más cuestionarios fácilmente.</em>
+      </div>
+
+      <button onclick="closeSubjectModal()" class="w-full py-3 rounded-2xl bg-brand-600 hover:bg-brand-500 text-white font-extrabold text-xs shadow-md transition">
+        ✓ Continuar Estudiando Morfofisiología I
+      </button>
+    </div>
+  </div>
+
   <!-- ==================== ONBOARDING / SWITCH STUDENT MODAL ==================== -->
   <div id="modal-onboarding" class="fixed inset-0 z-50 bg-black/85 backdrop-blur-md flex items-center justify-center p-4 transition-all duration-300">
     <div class="bg-white dark:bg-darkcard border border-slate-200 dark:border-darkborder rounded-3xl p-6 sm:p-8 max-w-md w-full shadow-2xl text-center space-y-5">
@@ -103,14 +191,18 @@
       </div>
       
       <div>
-        <span class="text-[10px] font-bold uppercase tracking-widest px-2.5 py-0.5 rounded-full bg-brand-500/10 text-brand-400 border border-brand-500/20">
-          TS Rehabilitación Física
-        </span>
-        <h2 class="text-xl sm:text-2xl font-extrabold font-heading text-slate-900 dark:text-white mt-2">
-          Plataforma de Morfofisiología I
+        <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-brand-500/10 text-brand-400 border border-brand-500/20 text-[10px] font-extrabold uppercase tracking-widest mb-1.5">
+          <span>🎓</span> Carrera: Terapia Física
+        </div>
+        <h2 class="text-xl sm:text-2xl font-extrabold font-heading text-slate-900 dark:text-white">
+          Plataforma de Estudio
         </h2>
-        <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">
-          Cada estudiante puede ingresar con su nombre y guardar su progreso individual.
+        <div class="mt-1 px-3 py-1 rounded-xl bg-slate-100 dark:bg-darksurface border border-slate-200 dark:border-darkborder inline-block">
+          <span class="text-xs font-bold text-emerald-500">● Materia:</span>
+          <span class="text-xs font-bold text-slate-800 dark:text-slate-200"> Morfofisiología I (154 preguntas)</span>
+        </div>
+        <p class="text-xs text-slate-500 dark:text-slate-400 mt-2">
+          Cada estudiante puede ingresar con su nombre y guardar su propio progreso de forma independiente.
         </p>
       </div>
 
@@ -151,21 +243,31 @@
   <!-- ==================== ULTRA-COMPACT HEADER (52px) ==================== -->
   <header class="h-[52px] bg-white/95 dark:bg-darkcard/95 backdrop-blur-md border-b border-slate-200 dark:border-darkborder px-3 sm:px-5 flex items-center justify-between flex-shrink-0 z-30 shadow-sm">
     
-    <!-- Left: Avatar, Name & Switch User -->
-    <div class="flex items-center gap-2 sm:gap-3 cursor-pointer group" onclick="openNameChangeModal()" title="Clic para cambiar de estudiante o perfil">
-      <div id="header-avatar" class="w-8 h-8 rounded-xl bg-gradient-to-tr from-indigo-600 to-teal-500 text-white flex items-center justify-center font-bold text-base shadow-md shadow-indigo-500/20 group-hover:scale-105 transition">
-        👩‍⚕️
-      </div>
-      <div>
-        <div class="flex items-center gap-1.5">
-          <span id="header-user-name" class="text-xs sm:text-sm font-extrabold font-heading text-slate-900 dark:text-white tracking-tight group-hover:text-brand-400 transition">
-            Estudiante
-          </span>
-          <span id="header-level-badge" class="text-[9px] font-bold px-1.5 py-0.5 rounded-md bg-amber-500/10 text-amber-500 border border-amber-500/20">
-            Nivel 1
-          </span>
+    <!-- Left: Avatar, Name, Switch User & Materia Menu -->
+    <div class="flex items-center gap-2 sm:gap-3">
+      <div class="flex items-center gap-2 cursor-pointer group" onclick="openNameChangeModal()" title="Clic para cambiar de estudiante o perfil">
+        <div id="header-avatar" class="w-8 h-8 rounded-xl bg-gradient-to-tr from-indigo-600 to-teal-500 text-white flex items-center justify-center font-bold text-base shadow-md shadow-indigo-500/20 group-hover:scale-105 transition">
+          👩‍⚕️
+        </div>
+        <div>
+          <div class="flex items-center gap-1.5">
+            <span id="header-user-name" class="text-xs sm:text-sm font-extrabold font-heading text-slate-900 dark:text-white tracking-tight group-hover:text-brand-400 transition">
+              Estudiante
+            </span>
+            <span id="header-level-badge" class="text-[9px] font-bold px-1.5 py-0.5 rounded-md bg-amber-500/10 text-amber-500 border border-amber-500/20">
+              Nivel 1
+            </span>
+          </div>
         </div>
       </div>
+
+      <!-- Materia Selector / Menu Badge -->
+      <button onclick="openSubjectModal()" class="hidden md:flex items-center gap-1.5 px-2.5 py-1 rounded-xl bg-slate-100 dark:bg-darksurface border border-slate-200 dark:border-darkborder hover:border-brand-500/50 text-slate-700 dark:text-slate-200 text-xs font-bold transition shadow-sm" title="Ver Catálogo de Materias de Terapia Física">
+        <span class="text-brand-500">📚</span>
+        <span class="text-[11px] font-extrabold text-brand-600 dark:text-brand-400">Terapia Física:</span>
+        <span class="text-[11px] font-bold">Morfofisiología I</span>
+        <span class="text-[9px] text-slate-400">▼</span>
+      </button>
     </div>
 
     <!-- Center: Navigation Tabs -->
@@ -911,6 +1013,18 @@
           `;
         }).join('');
       }
+    }
+
+        function openSubjectModal() {
+      const modal = document.getElementById('modal-subjects');
+      if (modal) modal.classList.remove('hidden');
+      playAudio('click');
+    }
+
+    function closeSubjectModal() {
+      const modal = document.getElementById('modal-subjects');
+      if (modal) modal.classList.add('hidden');
+      playAudio('click');
     }
 
     function openNameChangeModal() {
