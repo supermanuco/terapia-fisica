@@ -6,7 +6,7 @@
   <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
   <meta http-equiv="Pragma" content="no-cache" />
   <meta http-equiv="Expires" content="0" />
-  <title>Terapia Física | Morfofisiología I v2.2</title>
+  <title>Terapia Física | Morfofisiología I v3.0</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
@@ -52,6 +52,8 @@
     html, body {
       height: 100%;
       height: 100dvh;
+      margin: 0;
+      padding: 0;
       overflow: hidden;
       font-family: 'Inter', sans-serif;
       user-select: none;
@@ -263,14 +265,14 @@
         👨‍⚕️
       </div>
       <div class="flex items-center gap-1">
-        <span id="header-user-name" class="text-xs sm:text-sm font-extrabold font-heading text-slate-900 dark:text-white tracking-tight group-hover:text-brand-400 transition max-w-[100px] sm:max-w-none truncate">
+        <span id="header-user-name" class="text-xs sm:text-sm font-extrabold font-heading text-slate-900 dark:text-white tracking-tight group-hover:text-brand-400 transition max-w-[90px] sm:max-w-none truncate">
           Estudiante
         </span>
         <span id="header-level-badge" class="text-[9px] font-bold px-1.5 py-0.2 rounded bg-amber-500/10 text-amber-500 border border-amber-500/20">
           Nv.1
         </span>
         <span class="text-[9px] font-extrabold px-1.5 py-0.2 rounded-full bg-emerald-500/20 text-emerald-400 border border-emerald-500/30">
-          v2.2
+          v3.0
         </span>
       </div>
     </div>
@@ -303,16 +305,16 @@
     </div>
   </header>
 
-  <!-- ==================== MAIN VIEWPORT (CONSTRAINED BETWEEN HEADER & BOTTOM NAV) ==================== -->
-  <main class="flex-1 min-h-0 overflow-hidden p-1.5 sm:p-2.5 max-w-5xl mx-auto w-full flex flex-col justify-between">
+  <!-- ==================== MAIN VIEWPORT (CONSTRAINED & SCROLLABLE INSIDE) ==================== -->
+  <main class="flex-1 min-h-0 overflow-y-auto p-2 sm:p-3 max-w-4xl mx-auto w-full flex flex-col justify-start">
 
     <!-- ======================================================== -->
-    <!-- TAB 1: PRÁCTICA ACTIVA (PINNED ACTION BUTTONS)           -->
+    <!-- TAB 1: PRÁCTICA ACTIVA                                   -->
     <!-- ======================================================== -->
-    <section id="view-practice" class="h-full flex flex-col justify-between min-h-0">
+    <section id="view-practice" class="w-full flex flex-col space-y-2">
       
       <!-- Sub-header: Filter & Controls Row -->
-      <div class="bg-white/95 dark:bg-darkcard/95 backdrop-blur-md border border-slate-200 dark:border-darkborder rounded-2xl p-2 sm:px-3 flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-1.5 shadow-sm flex-shrink-0 mb-1">
+      <div class="bg-white/95 dark:bg-darkcard/95 backdrop-blur-md border border-slate-200 dark:border-darkborder rounded-2xl p-2 sm:px-3 flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-1.5 shadow-sm flex-shrink-0">
         
         <!-- Topic Dropdown -->
         <div class="flex items-center gap-1.5 flex-1 min-w-0">
@@ -350,8 +352,8 @@
         </div>
       </div>
 
-      <!-- Center Scrollable Question Card -->
-      <div class="flex-1 min-h-0 bg-white/95 dark:bg-darkcard/95 backdrop-blur-md border border-slate-200 dark:border-darkborder rounded-2xl sm:rounded-3xl p-3 sm:p-5 shadow-xl flex flex-col justify-between overflow-y-auto overscroll-contain mb-1">
+      <!-- Center Question Card -->
+      <div class="bg-white/95 dark:bg-darkcard/95 backdrop-blur-md border border-slate-200 dark:border-darkborder rounded-2xl sm:rounded-3xl p-3 sm:p-5 shadow-xl space-y-3">
         
         <div class="space-y-1.5">
           <div class="flex items-center justify-between">
@@ -372,12 +374,12 @@
             Cargando pregunta...
           </h2>
 
-          <div id="practice-q-items" class="hidden text-xs bg-slate-50 dark:bg-darksurface p-2 rounded-xl border border-slate-200 dark:border-darkborder max-h-24 overflow-y-auto space-y-1 text-slate-700 dark:text-slate-300">
+          <div id="practice-q-items" class="hidden text-xs bg-slate-50 dark:bg-darksurface p-2 rounded-xl border border-slate-200 dark:border-darkborder max-h-32 overflow-y-auto space-y-1 text-slate-700 dark:text-slate-300">
           </div>
         </div>
 
         <!-- Options Grid -->
-        <div id="practice-options-container" class="grid grid-cols-1 md:grid-cols-2 gap-2 my-2">
+        <div id="practice-options-container" class="grid grid-cols-1 md:grid-cols-2 gap-2">
         </div>
 
         <!-- Feedback Box -->
@@ -385,25 +387,14 @@
         </div>
 
       </div>
-
-      <!-- Action Bar (ALWAYS 100% VISIBLE DIRECTLY ABOVE BOTTOM MENU) -->
-      <div class="bg-white/95 dark:bg-darkcard/95 backdrop-blur-md border border-slate-200 dark:border-darkborder rounded-2xl p-1.5 sm:p-2 flex items-center justify-between gap-2 shadow-lg flex-shrink-0 z-20">
-        <button onclick="practicePrev()" id="btn-practice-prev" class="w-1/3 py-2.5 rounded-xl border border-slate-200 dark:border-darkborder bg-slate-50 dark:bg-darksurface text-xs font-bold text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 disabled:opacity-30 disabled:cursor-not-allowed transition flex items-center justify-center gap-1 shadow-sm">
-          <span>◀</span> <span>Anterior</span>
-        </button>
-
-        <button onclick="practiceNext()" id="btn-practice-next" class="w-2/3 py-2.5 rounded-xl bg-brand-600 hover:bg-brand-500 text-white text-xs font-extrabold shadow-lg shadow-brand-500/30 disabled:opacity-30 disabled:cursor-not-allowed transition flex items-center justify-center gap-1.5">
-          <span>Siguiente Pregunta</span> <span>▶</span>
-        </button>
-      </div>
     </section>
 
     <!-- ======================================================== -->
     <!-- TAB 2: MINIJUEGO DE PAREJAS ANATÓMICAS                   -->
     <!-- ======================================================== -->
-    <section id="view-game" class="hidden h-full flex flex-col justify-between min-h-0">
+    <section id="view-game" class="hidden w-full flex flex-col space-y-2">
       
-      <div class="bg-white/95 dark:bg-darkcard/95 backdrop-blur-md border border-slate-200 dark:border-darkborder rounded-2xl p-2 sm:px-3 flex items-center justify-between gap-2 shadow-sm flex-shrink-0 mb-1">
+      <div class="bg-white/95 dark:bg-darkcard/95 backdrop-blur-md border border-slate-200 dark:border-darkborder rounded-2xl p-2 sm:px-3 flex items-center justify-between gap-2 shadow-sm flex-shrink-0">
         <div class="flex items-center gap-1.5">
           <span class="text-xs sm:text-sm font-extrabold font-heading text-amber-500">🎮 Duelo de Parejas</span>
           <span class="text-[10px] text-slate-400 hidden sm:inline">Conecta término con su concepto</span>
@@ -422,12 +413,12 @@
         </div>
       </div>
 
-      <div class="flex-1 min-h-0 bg-white/95 dark:bg-darkcard/95 backdrop-blur-md border border-slate-200 dark:border-darkborder rounded-2xl sm:rounded-3xl p-2.5 sm:p-4 shadow-xl flex flex-col justify-center overflow-y-auto overscroll-contain mb-1">
-        <div id="game-board-grid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2 h-full max-h-[460px]">
+      <div class="bg-white/95 dark:bg-darkcard/95 backdrop-blur-md border border-slate-200 dark:border-darkborder rounded-2xl sm:rounded-3xl p-2.5 sm:p-4 shadow-xl">
+        <div id="game-board-grid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2 min-h-[300px]">
         </div>
       </div>
 
-      <div class="p-2 rounded-2xl bg-white/95 dark:bg-darkcard/95 border border-slate-200 dark:border-darkborder text-[11px] text-slate-400 text-center flex-shrink-0 shadow-sm">
+      <div class="p-2 rounded-2xl bg-white/95 dark:bg-darkcard/95 border border-slate-200 dark:border-darkborder text-[11px] text-slate-400 text-center shadow-sm">
         💡 <strong>Objetivo:</strong> Toca un término anatómico y luego su definición para emparejarlos.
       </div>
     </section>
@@ -435,8 +426,8 @@
     <!-- ======================================================== -->
     <!-- TAB 3: FLASHCARDS 3D                                      -->
     <!-- ======================================================== -->
-    <section id="view-flashcards" class="hidden h-full flex flex-col justify-between min-h-0">
-      <div class="bg-white/95 dark:bg-darkcard/95 backdrop-blur-md border border-slate-200 dark:border-darkborder rounded-2xl p-2 sm:px-3 flex items-center justify-between gap-2 shadow-sm flex-shrink-0 mb-1">
+    <section id="view-flashcards" class="hidden w-full flex flex-col space-y-2">
+      <div class="bg-white/95 dark:bg-darkcard/95 backdrop-blur-md border border-slate-200 dark:border-darkborder rounded-2xl p-2 sm:px-3 flex items-center justify-between gap-2 shadow-sm flex-shrink-0">
         <div class="flex items-center gap-1.5 flex-1 min-w-0">
           <select id="fc-topic-select" onchange="changeFcTopic()" class="bg-slate-100 dark:bg-darksurface text-slate-900 dark:text-slate-100 text-xs font-bold rounded-xl px-2 py-1.5 border border-slate-200 dark:border-darkborder outline-none max-w-[170px] sm:max-w-xs truncate cursor-pointer">
             <option value="all">🌟 Todos los Temas</option>
@@ -461,9 +452,9 @@
         </div>
       </div>
 
-      <div class="flex-1 min-h-0 flex flex-col justify-center items-center my-1">
-        <div onclick="flipCurrentCard()" class="w-full max-w-2xl h-full max-h-[360px] sm:max-h-[390px] cursor-pointer perspective-1000 select-none">
-          <div id="fc-card-inner" class="relative w-full h-full transform-style-3d transition-transform duration-500 rounded-3xl shadow-xl">
+      <div class="flex flex-col justify-center items-center my-1">
+        <div onclick="flipCurrentCard()" class="w-full max-w-2xl min-h-[280px] sm:min-h-[320px] cursor-pointer perspective-1000 select-none">
+          <div id="fc-card-inner" class="relative w-full h-full min-h-[280px] sm:min-h-[320px] transform-style-3d transition-transform duration-500 rounded-3xl shadow-xl">
             
             <div class="absolute inset-0 backface-hidden bg-white dark:bg-darkcard border-2 border-indigo-500/40 rounded-3xl p-4 sm:p-6 flex flex-col justify-between shadow-lg">
               <div class="flex items-center justify-between text-xs font-bold text-brand-600 dark:text-brand-400">
@@ -504,8 +495,8 @@
         </div>
       </div>
 
-      <!-- Action Bar -->
-      <div class="bg-white/95 dark:bg-darkcard/95 backdrop-blur-md border border-slate-200 dark:border-darkborder rounded-2xl p-1.5 sm:p-2 flex items-center justify-between gap-1.5 sm:gap-2 flex-shrink-0 shadow-md z-20">
+      <!-- Action Bar for Flashcards -->
+      <div class="bg-white/95 dark:bg-darkcard/95 backdrop-blur-md border border-slate-200 dark:border-darkborder rounded-2xl p-1.5 sm:p-2 flex items-center justify-between gap-1.5 sm:gap-2 flex-shrink-0 shadow-md">
         <button onclick="fcPrev()" class="p-2 sm:px-3 rounded-xl border border-slate-200 dark:border-darkborder bg-slate-50 dark:bg-darksurface text-xs font-bold text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
           ◀
         </button>
@@ -526,7 +517,7 @@
 
     <!-- ==================== TAB 4: SIMULADOR DE EXAMEN                           -->
     <!-- ======================================================== -->
-    <section id="view-exam" class="hidden h-full flex flex-col justify-center items-center min-h-0 overflow-y-auto">
+    <section id="view-exam" class="hidden w-full flex flex-col items-center justify-center space-y-3">
       <div id="exam-card-setup" class="bg-white/95 dark:bg-darkcard/95 backdrop-blur-md border border-slate-200 dark:border-darkborder rounded-3xl p-5 sm:p-7 max-w-lg w-full text-center shadow-2xl space-y-4">
         <div class="w-12 h-12 rounded-2xl bg-brand-500/10 text-brand-500 flex items-center justify-center text-2xl mx-auto">
           ⏱️
@@ -555,8 +546,8 @@
         </button>
       </div>
 
-      <div id="exam-card-active" class="hidden w-full h-full flex flex-col justify-between min-h-0">
-        <div class="bg-white/95 dark:bg-darkcard/95 backdrop-blur-md border border-slate-200 dark:border-darkborder rounded-2xl p-2 sm:px-3 flex items-center justify-between gap-2 shadow-sm flex-shrink-0 mb-1">
+      <div id="exam-card-active" class="hidden w-full flex flex-col space-y-2">
+        <div class="bg-white/95 dark:bg-darkcard/95 backdrop-blur-md border border-slate-200 dark:border-darkborder rounded-2xl p-2 sm:px-3 flex items-center justify-between gap-2 shadow-sm flex-shrink-0">
           <span class="text-xs font-bold text-brand-600 dark:text-brand-400" id="exam-indicator">Pregunta 1 de 20</span>
           <div class="flex items-center gap-2">
             <span id="exam-timer-display" class="font-mono text-xs font-extrabold px-2 py-0.5 rounded-lg bg-slate-100 dark:bg-darksurface text-slate-800 dark:text-slate-200">15:00</span>
@@ -566,10 +557,10 @@
           </div>
         </div>
 
-        <div class="flex-1 min-h-0 bg-white/95 dark:bg-darkcard/95 backdrop-blur-md border border-slate-200 dark:border-darkborder rounded-2xl sm:rounded-3xl p-3 sm:p-5 shadow-xl flex flex-col justify-between overflow-y-auto overscroll-contain mb-1">
+        <div class="bg-white/95 dark:bg-darkcard/95 backdrop-blur-md border border-slate-200 dark:border-darkborder rounded-2xl sm:rounded-3xl p-3 sm:p-5 shadow-xl space-y-3">
           <div class="space-y-1.5">
             <span class="text-[10px] text-slate-400 font-semibold" id="exam-q-topic">Tema</span>
-            <h3 id="exam-q-title" class="text-xs sm:text-base font-bold text-slate-900 dark:text-white leading-snug">Pregunta</h3>
+            <h3 id="exam-q-title" class="text-xs sm:base font-bold text-slate-900 dark:text-white leading-snug">Pregunta</h3>
             <div id="exam-q-items" class="hidden text-xs bg-slate-50 dark:bg-darksurface p-2 rounded-xl max-h-24 overflow-y-auto space-y-1"></div>
           </div>
 
@@ -577,7 +568,7 @@
           </div>
         </div>
 
-        <div class="bg-white/95 dark:bg-darkcard/95 backdrop-blur-md border border-slate-200 dark:border-darkborder rounded-2xl p-2 sm:px-3 flex justify-between items-center gap-2 flex-shrink-0 shadow-md z-20">
+        <div class="bg-white/95 dark:bg-darkcard/95 backdrop-blur-md border border-slate-200 dark:border-darkborder rounded-2xl p-2 sm:px-3 flex justify-between items-center gap-2 flex-shrink-0 shadow-md">
           <button onclick="examNavPrev()" id="btn-exam-prev" class="px-3.5 py-2 rounded-xl border border-slate-200 dark:border-darkborder text-xs font-bold text-slate-700 dark:text-slate-300 bg-slate-50 dark:bg-darksurface">
             ◀ Anterior
           </button>
@@ -617,7 +608,7 @@
 
     <!-- ==================== TAB 5: MNEMOTECNIAS                                 -->
     <!-- ======================================================== -->
-    <section id="view-mnemonics" class="hidden h-full overflow-y-auto p-1 min-h-0 space-y-2.5 overscroll-contain">
+    <section id="view-mnemonics" class="hidden w-full space-y-2.5">
       <div class="text-center pb-1">
         <h2 class="text-base sm:text-lg font-bold font-heading">🧠 Guía de Mnemotecnias y Trucos Clínicos</h2>
         <p class="text-xs text-slate-500">Diseñado para recordar al instante en rehabilitación física</p>
@@ -648,123 +639,104 @@
 
         <div class="p-3.5 rounded-2xl bg-white/90 dark:bg-darkcard/90 backdrop-blur-sm border border-slate-200 dark:border-darkborder space-y-1.5 shadow-sm">
           <div class="font-bold text-brand-600 dark:text-brand-400 text-sm">🦴 Células Óseas</div>
-          <p><strong>OsteoBlasto:</strong> <strong>B</strong>uilder (Construye hueso nuevo).</p>
-          <p><strong>OsteoClasto:</strong> <strong>C</strong>omer/Catabolismo (Reabsorbe y degrada hueso).</p>
-          <p><strong>OsteoCito:</strong> Célula madura de mantenimiento.</p>
-        </div>
-
-        <div class="p-3.5 rounded-2xl bg-white/90 dark:bg-darkcard/90 backdrop-blur-sm border border-slate-200 dark:border-darkborder space-y-1.5 shadow-sm">
-          <div class="font-bold text-brand-600 dark:text-brand-400 text-sm">🔗 Tipos de Articulaciones</div>
-          <p><strong>Sinartrosis:</strong> <strong>S</strong>in movimiento (Inmóviles, suturas).</p>
-          <p><strong>Anfiartrosis:</strong> <strong>A</strong>penas movimiento (Semimóviles, sínfisis).</p>
-          <p><strong>Diartrosis:</strong> <strong>D</strong>oble/Gran movimiento (Móviles, sinoviales).</p>
-        </div>
-
-        <div class="p-3.5 rounded-2xl bg-white/90 dark:bg-darkcard/90 backdrop-blur-sm border border-slate-200 dark:border-darkborder space-y-1.5 shadow-sm">
-          <div class="font-bold text-brand-600 dark:text-brand-400 text-sm">🛏️ Posiciones Clínicas Clave</div>
-          <p><strong>Fowler:</strong> Semisentado a 45° (Mejora la respiración).</p>
-          <p><strong>Trendelenburg:</strong> Pies elevados 45°, cabeza baja (Shock/retorno venoso).</p>
-          <p><strong>Sims:</strong> Decúbito lateral con pierna flexionada (Seguridad/enemas).</p>
+          <p><strong>OsteoBLASTO:</strong> <em>Builder</em> (Construye matriz ósea).</p>
+          <p><strong>OsteoCLASTO:</strong> <em>Come / Cataboliza</em> (Reabsorbe y destruye hueso viejo).</p>
+          <p><strong>OsteoCITO:</strong> Célula madura que mantiene la homeostasis.</p>
         </div>
       </div>
     </section>
 
     <!-- ==================== TAB 6: BANCO COMPLETO CON BÚSQUEDA                 -->
     <!-- ======================================================== -->
-    <section id="view-bank" class="hidden h-full flex flex-col min-h-0">
-      <div class="p-2 sm:p-3 bg-white/95 dark:bg-darkcard/95 border border-slate-200 dark:border-darkborder rounded-2xl flex items-center gap-2 mb-2 flex-shrink-0 shadow-sm">
+    <section id="view-bank" class="hidden w-full flex flex-col space-y-2">
+      <div class="p-2 sm:p-3 bg-white/95 dark:bg-darkcard/95 border border-slate-200 dark:border-darkborder rounded-2xl flex items-center gap-2 flex-shrink-0 shadow-sm">
         <span class="text-sm">🔍</span>
         <input type="text" id="bank-search-query" oninput="searchBank()" placeholder="Buscar por palabra clave, tema o número de pregunta..." class="w-full bg-transparent text-xs sm:text-sm text-slate-900 dark:text-white outline-none font-semibold placeholder:text-slate-400" />
       </div>
-      <div id="bank-scroll-list" class="flex-1 overflow-y-auto space-y-2 pr-1 overscroll-contain">
+      <div id="bank-scroll-list" class="space-y-2 pr-1">
       </div>
     </section>
 
     <!-- ==================== TAB 7: CUADERNO DE ERRORES INTELIGENTE              -->
     <!-- ======================================================== -->
-    <section id="view-errors" class="hidden h-full flex flex-col min-h-0">
-      <div class="p-2 sm:p-3 bg-rose-500/10 border border-rose-500/20 rounded-2xl flex items-center justify-between mb-2 flex-shrink-0 shadow-sm">
+    <section id="view-errors" class="hidden w-full flex flex-col space-y-2">
+      <div class="p-2 sm:p-3 bg-rose-500/10 border border-rose-500/20 rounded-2xl flex items-center justify-between flex-shrink-0 shadow-sm">
         <div class="flex items-center gap-2">
           <span class="text-rose-500 text-base">📝</span>
           <span class="text-xs font-bold text-rose-600 dark:text-rose-300">Preguntas por reforzar: <strong id="errors-count-heading">0</strong></span>
         </div>
         <button onclick="clearAllErrors()" class="text-[11px] font-bold text-rose-500 hover:text-rose-400 px-2 py-1 rounded-lg bg-rose-500/10">Limpiar</button>
       </div>
-      <div id="errors-scroll-list" class="flex-1 overflow-y-auto space-y-2 pr-1 overscroll-contain">
+      <div id="errors-scroll-list" class="space-y-2 pr-1">
       </div>
     </section>
 
   </main>
 
-  <!-- ==================== NATIVE BOTTOM ICON BAR (ALL 7 MODES IN ICON BAR) ==================== -->
-  <nav class="h-14 bg-white/98 dark:bg-darkcard/98 backdrop-blur-lg border-t border-slate-200 dark:border-darkborder flex items-center justify-around flex-shrink-0 z-40 px-1 shadow-2xl overflow-x-auto no-scrollbar">
+  <!-- ==================== DOCKED BOTTOM BAR (ACTIONS ON TOP + NAV ON BOTTOM) ==================== -->
+  <footer class="flex-shrink-0 z-40 bg-white/95 dark:bg-darkcard/95 backdrop-blur-lg border-t border-slate-200 dark:border-darkborder shadow-2xl">
     
-    <button onclick="setTab('practice')" id="btab-practice" class="flex flex-col items-center justify-center flex-1 py-1 text-brand-600 dark:text-brand-400 font-extrabold text-[10px] min-w-[50px] transition">
-      <span class="text-base sm:text-lg">🎯</span>
-      <span class="truncate">Práctica</span>
-    </button>
+    <!-- TOP ROW: ACTION BAR FOR PRACTICE (PINNED STRICTLY ABOVE ICON BAR) -->
+    <div id="practice-action-dock" class="p-2 border-b border-slate-200/60 dark:border-darkborder/60 max-w-4xl mx-auto flex items-center justify-between gap-2">
+      <button onclick="practicePrev()" id="btn-practice-prev" class="w-1/3 py-2.5 rounded-xl border border-slate-200 dark:border-darkborder bg-slate-100 dark:bg-darksurface text-xs font-bold text-slate-700 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-800 disabled:opacity-30 disabled:cursor-not-allowed transition flex items-center justify-center gap-1 shadow-sm active:scale-95">
+        <span>◀</span> <span>Anterior</span>
+      </button>
 
-    <button onclick="setTab('game')" id="btab-game" class="flex flex-col items-center justify-center flex-1 py-1 text-slate-500 dark:text-slate-400 font-bold text-[10px] min-w-[50px] transition">
-      <span class="text-base sm:text-lg">🎮</span>
-      <span class="truncate">Juego</span>
-    </button>
+      <button onclick="practiceNext()" id="btn-practice-next" class="w-2/3 py-2.5 rounded-xl bg-brand-600 hover:bg-brand-500 text-white text-xs sm:text-sm font-extrabold shadow-lg shadow-brand-500/30 disabled:opacity-30 disabled:cursor-not-allowed transition flex items-center justify-center gap-1.5 active:scale-95">
+        <span>Siguiente Pregunta</span> <span>▶</span>
+      </button>
+    </div>
 
-    <button onclick="setTab('flashcards')" id="btab-flashcards" class="flex flex-col items-center justify-center flex-1 py-1 text-slate-500 dark:text-slate-400 font-bold text-[10px] min-w-[50px] transition">
-      <span class="text-base sm:text-lg">🃏</span>
-      <span class="truncate">Cards</span>
-    </button>
+    <!-- BOTTOM ROW: NATIVE 7-MODE ICON NAVIGATION BAR (ALWAYS 100% VISIBLE) -->
+    <nav class="h-14 max-w-4xl mx-auto flex items-center justify-around px-1 overflow-x-auto no-scrollbar">
+      
+      <button onclick="setTab('practice')" id="btab-practice" class="flex flex-col items-center justify-center flex-1 py-1 text-brand-600 dark:text-brand-400 font-extrabold text-[10px] min-w-[48px] transition active:scale-95">
+        <span class="text-base sm:text-lg">🎯</span>
+        <span class="truncate">Práctica</span>
+      </button>
 
-    <button onclick="setTab('exam')" id="btab-exam" class="flex flex-col items-center justify-center flex-1 py-1 text-slate-500 dark:text-slate-400 font-bold text-[10px] min-w-[50px] transition">
-      <span class="text-base sm:text-lg">⏱️</span>
-      <span class="truncate">Examen</span>
-    </button>
+      <button onclick="setTab('game')" id="btab-game" class="flex flex-col items-center justify-center flex-1 py-1 text-slate-500 dark:text-slate-400 font-bold text-[10px] min-w-[48px] transition active:scale-95">
+        <span class="text-base sm:text-lg">🎮</span>
+        <span class="truncate">Minijuego</span>
+      </button>
 
-    <button onclick="setTab('mnemonics')" id="btab-mnemonics" class="flex flex-col items-center justify-center flex-1 py-1 text-slate-500 dark:text-slate-400 font-bold text-[10px] min-w-[50px] transition">
-      <span class="text-base sm:text-lg">🧠</span>
-      <span class="truncate">Trucos</span>
-    </button>
+      <button onclick="setTab('flashcards')" id="btab-flashcards" class="flex flex-col items-center justify-center flex-1 py-1 text-slate-500 dark:text-slate-400 font-bold text-[10px] min-w-[48px] transition active:scale-95">
+        <span class="text-base sm:text-lg">🃏</span>
+        <span class="truncate">Cards</span>
+      </button>
 
-    <button onclick="setTab('bank')" id="btab-bank" class="flex flex-col items-center justify-center flex-1 py-1 text-slate-500 dark:text-slate-400 font-bold text-[10px] min-w-[50px] transition">
-      <span class="text-base sm:text-lg">📖</span>
-      <span class="truncate">Banco</span>
-    </button>
+      <button onclick="setTab('exam')" id="btab-exam" class="flex flex-col items-center justify-center flex-1 py-1 text-slate-500 dark:text-slate-400 font-bold text-[10px] min-w-[48px] transition active:scale-95">
+        <span class="text-base sm:text-lg">⏱️</span>
+        <span class="truncate">Simulador</span>
+      </button>
 
-    <button onclick="setTab('errors')" id="btab-errors" class="flex flex-col items-center justify-center flex-1 py-1 text-slate-500 dark:text-slate-400 font-bold text-[10px] min-w-[50px] transition relative">
-      <span class="text-base sm:text-lg">📝</span>
-      <span class="truncate">Errores</span>
-      <span id="btab-badge-errors" class="hidden absolute top-0.5 right-2 w-2 h-2 rounded-full bg-rose-500 animate-ping"></span>
-    </button>
+      <button onclick="setTab('mnemonics')" id="btab-mnemonics" class="flex flex-col items-center justify-center flex-1 py-1 text-slate-500 dark:text-slate-400 font-bold text-[10px] min-w-[48px] transition active:scale-95">
+        <span class="text-base sm:text-lg">🧠</span>
+        <span class="truncate">Mnemot.</span>
+      </button>
 
-  </nav>
+      <button onclick="setTab('bank')" id="btab-bank" class="flex flex-col items-center justify-center flex-1 py-1 text-slate-500 dark:text-slate-400 font-bold text-[10px] min-w-[48px] transition active:scale-95">
+        <span class="text-base sm:text-lg">📖</span>
+        <span class="truncate">Banco</span>
+      </button>
+
+      <button onclick="setTab('errors')" id="btab-errors" class="flex flex-col items-center justify-center flex-1 py-1 text-slate-500 dark:text-slate-400 font-bold text-[10px] min-w-[48px] transition active:scale-95 relative">
+        <span class="text-base sm:text-lg">📝</span>
+        <span class="truncate">Errores</span>
+        <span id="btab-badge-errors" class="hidden absolute top-0.5 right-2 w-2 h-2 rounded-full bg-rose-500 animate-ping"></span>
+      </button>
+
+    </nav>
+  </footer>
 
   <script>
     const QUESTIONS = [{"id": 1, "topic": "Planimetría y Términos Direccionales", "type": "multiple_choice", "question": "El plano vertical, que divide al cuerpo o un órgano en partes anterior y posterior, se denomina:", "items": [], "options": ["Plano frontal", "Plano sagital medio", "Plano transversal", "Decúbito ventral", "Decúbito dorsal"], "correct": "Plano frontal", "explanation": "El plano frontal (coronal) divide el cuerpo en partes anterior (adelante) y posterior (atrás).", "mnemonic": ""}, {"id": 2, "topic": "Planimetría y Términos Direccionales", "type": "multiple_choice", "question": "El plano vertical, que divide al cuerpo o un órgano en lados derecho e izquierdo, se denomina:", "items": [], "options": ["Plano sagital", "Plano frontal", "Plano transversal", "Decúbito lateral", "Decúbito dorsal"], "correct": "Plano sagital", "explanation": "El plano sagital divide el cuerpo en mitades o lados derecho e izquierdo.", "mnemonic": ""}, {"id": 3, "topic": "Planimetría y Términos Direccionales", "type": "multiple_choice", "question": "El plano horizontal, que divide al cuerpo o un órgano en partes superior e inferior, se denomina:", "items": [], "options": ["Plano transversal", "Plano sagital medio", "Plano frontal", "Decúbito supino", "Decúbito prono"], "correct": "Plano transversal", "explanation": "El plano transversal divide el cuerpo en parte superior (craneal) e inferior (caudal).", "mnemonic": ""}, {"id": 4, "topic": "Planimetría y Términos Direccionales", "type": "multiple_choice", "question": "El plano que atraviesa al cuerpo o un órgano en un ángulo diferente de 90°, se denomina:", "items": [], "options": ["Plano oblicuo", "Plano transversal", "Decúbito supino", "Plano frontal", "Plano sagital medio"], "correct": "Plano oblicuo", "explanation": "El plano oblicuo atraviesa el cuerpo o un órgano en ángulo diferente a 90° (diagonal).", "mnemonic": ""}, {"id": 5, "topic": "Generalidades y Planimetría", "type": "multiple_choice", "question": "A la línea anatómica imaginaria horizontal, que pasa por debajo del décimo cartílago costal, se le denomina:", "items": [], "options": ["Subcostal", "Axilar anterior", "Axilar posterior", "Medioclavicular", "Intercostal"], "correct": "Subcostal", "explanation": "La línea horizontal subcostal pasa por debajo del 10° cartílago costal.", "mnemonic": ""}, {"id": 6, "topic": "Generalidades y Planimetría", "type": "multiple_choice", "question": "Cuando una estructura se encuentra alejada de la cabeza o en la parte más baja de otra estructura, se refiere a:", "items": [], "options": ["Caudal", "Cefálico", "Dorsal", "Ventral", "Contralateral"], "correct": "Caudal", "explanation": "Caudal: Estructura alejada de la cabeza o hacia la parte inferior.", "mnemonic": ""}, {"id": 7, "topic": "Generalidades y Planimetría", "type": "multiple_choice", "question": "Cuando una estructura se encuentra cerca de la cabeza o en la parte más elevada de otra estructura, se refiere a:", "items": [], "options": ["Cefálico", "Caudal", "Dorsal", "Ventral", "Contralateral"], "correct": "Cefálico", "explanation": "Cefálico: Estructura cercana a la cabeza o más elevada.", "mnemonic": ""}, {"id": 8, "topic": "Generalidades y Planimetría", "type": "multiple_choice", "question": "Cuando una estructura se encuentra cerca o en la parte frontal del cuerpo, se refiere a:", "items": [], "options": ["Ventral", "Dorsal", "Cefálico", "Caudal", "Contralateral"], "correct": "Ventral", "explanation": "El plano frontal (coronal) divide el cuerpo en partes anterior (adelante) y posterior (atrás).", "mnemonic": ""}, {"id": 9, "topic": "Generalidades y Planimetría", "type": "multiple_choice", "question": "Cuando una estructura se encuentra cerca o en la parte trasera del cuerpo, se refiere a:", "items": [], "options": ["Dorsal", "Ventral", "Cefálico", "Caudal", "Contralateral"], "correct": "Dorsal", "explanation": "Dorsal (posterior): Estructura cercana o en la parte trasera.", "mnemonic": ""}, {"id": 10, "topic": "Generalidades y Planimetría", "type": "multiple_choice", "question": "Cuando una estructura se encuentra cerca de la línea media, se hace referencia a una ubicación de tipo:", "items": [], "options": ["Medial", "Lateral", "Proximal", "Distal", "Contralateral"], "correct": "Medial", "explanation": "Medial: Estructura cercana a la línea media del cuerpo.", "mnemonic": ""}, {"id": 11, "topic": "Generalidades y Planimetría", "type": "multiple_choice", "question": "Cuando una estructura se encuentra alejada de la línea media, se hace referencia a una ubicación de tipo:", "items": [], "options": ["Lateral", "Medial", "Proximal", "Distal", "Ipsilateral"], "correct": "Lateral", "explanation": "Lateral: Estructura alejada de la línea media hacia los lados.", "mnemonic": ""}, {"id": 12, "topic": "Generalidades y Planimetría", "type": "multiple_choice", "question": "Cuando una estructura se encuentra cercana al punto de origen de otra, se hace referencia a una ubicación de tipo:", "items": [], "options": ["Proximal", "Distal", "Medial", "Lateral", "Contralateral"], "correct": "Proximal", "explanation": "Proximal: Más cercano al punto de origen o unión con el tronco.", "mnemonic": ""}, {"id": 13, "topic": "Planimetría y Términos Direccionales", "type": "multiple_choice", "question": "Teniendo en cuenta la anatomía en movimiento, el término \"flexión\" se refiere a:", "items": [], "options": ["Cuando disminuye el ángulo entre los huesos de una articulación", "Cuando incrementa el ángulo entre los huesos de una articulación", "Que la estructura se aleja de la línea media", "Que la estructura se acerca a la línea media", "La rotación de la palma de la mano hacia delante"], "correct": "Cuando disminuye el ángulo entre los huesos de una articulación", "explanation": "Flexión: Disminuye el ángulo entre los huesos de una articulación.", "mnemonic": ""}, {"id": 14, "topic": "Planimetría y Términos Direccionales", "type": "multiple_choice", "question": "Teniendo en cuenta la anatomía en movimiento, el término \"extensión\" se refiere a:", "items": [], "options": ["Cuando incrementa el ángulo entre los huesos de una articulación", "Cuando disminuye el ángulo entre los huesos de una articulación", "Que la estructura se aleja de la línea media", "Que la estructura se acerca a la línea media", "La rotación de la palma de la mano hacia atrás"], "correct": "Cuando incrementa el ángulo entre los huesos de una articulación", "explanation": "Extensión: Incrementa o abre el ángulo entre los huesos articulares.", "mnemonic": ""}, {"id": 15, "topic": "Planimetría y Términos Direccionales", "type": "multiple_choice", "question": "Teniendo en cuenta la anatomía en movimiento, el término \"abducción\" se refiere a:", "items": [], "options": ["Que la estructura se aleja de la línea media", "Que la estructura se acerca a la línea media", "Cuando disminuye el ángulo entre los huesos de una articulación", "Cuando incrementa el ángulo entre los huesos de una articulación", "El movimiento circular del extremo distal de una parte del cuerpo"], "correct": "Que la estructura se aleja de la línea media", "explanation": "Abducción: Movimiento que aleja una estructura de la línea media.", "mnemonic": "💡 Mnemotecnia: 'ABD' = Abre y Aleja. 'ADD' = Añade y Acerca."}, {"id": 16, "topic": "Planimetría y Términos Direccionales", "type": "multiple_choice", "question": "Teniendo en cuenta la anatomía en movimiento, el término \"aducción\" se refiere a:", "items": [], "options": ["Que la estructura se acerca a la línea media", "Que la estructura se aleja de la línea media", "Cuando disminuye el ángulo entre los huesos de una articulación", "Cuando incrementa el ángulo entre los huesos de una articulación", "El giro de una estructura alrededor de su propio eje longitudinal"], "correct": "Que la estructura se acerca a la línea media", "explanation": "Aducción: Movimiento que acerca o añade una estructura a la línea media.", "mnemonic": ""}, {"id": 17, "topic": "Planimetría y Términos Direccionales", "type": "multiple_choice", "question": "Teniendo en cuenta la anatomía en movimiento, el término \"rotación\" se refiere a:", "items": [], "options": ["El giro de una estructura alrededor de su propio eje longitudinal", "Que la estructura se aleja de la línea media", "Que la estructura se acerca a la línea media", "Que se encuentra en la superficie corporal", "Que se encuentra alejado de la superficie del cuerpo"], "correct": "El giro de una estructura alrededor de su propio eje longitudinal", "explanation": "Rotación: Giro de una estructura alrededor de su propio eje longitudinal.", "mnemonic": ""}, {"id": 18, "topic": "Planimetría y Términos Direccionales", "type": "multiple_choice", "question": "Las cavidades corporales ventrales son:", "items": [], "options": ["Cavidad torácica y cavidad abdomino-pélvica", "Cavidad torácica y cavidad espinal", "Cavidad craneal y cavidad pleural", "Cavidad abdomino-pélvica y cavidad vertebral", "Cavidad craneal y cavidad espinal"], "correct": "Cavidad torácica y cavidad abdomino-pélvica", "explanation": "Ventral (anterior): Estructura cercana o en la parte frontal.", "mnemonic": ""}, {"id": 19, "topic": "Planimetría y Términos Direccionales", "type": "multiple_choice", "question": "Las cavidades corporales dorsales son:", "items": [], "options": ["Cavidad craneal y cavidad espinal", "Cavidad abdomino-pélvica y cavidad vertebral", "Cavidad craneal y cavidad pleural", "Cavidad torácica y cavidad espinal", "Cavidad torácica y cavidad abdomino-pélvica"], "correct": "Cavidad craneal y cavidad espinal", "explanation": "Dorsal (posterior): Estructura cercana o en la parte trasera.", "mnemonic": ""}, {"id": 20, "topic": "Cavidades y Topografía Abdominal", "type": "multiple_selection", "question": "La división topográfica del abdomen desde el punto de vista clínico, se establece en nueve regiones. De las siguientes opciones, determine las que sean regiones abdominales y seleccione la respuesta que se ajuste a su criterio:", "items": ["1- Hipocondrio izquierdo.", "2- Hemitórax derecho.", "3- Mesogastrio.", "4- Epicondrio.", "5- Flanco derecho."], "options": ["1, 3 y 5", "2, 4 y 5", "1, 2 y 3", "3, 4 y 5", "2, 3 y 4"], "correct": "1, 3 y 5", "explanation": "Respuesta correcta oficial validada para Morfofisiología I.", "mnemonic": ""}, {"id": 21, "topic": "Cavidades y Topografía Abdominal", "type": "multiple_selection", "question": "La división topográfica del abdomen desde el punto de vista clínico, se establece en nueve regiones. De las siguientes opciones, determine las que sean regiones abdominales y seleccione la respuesta que se ajuste a su criterio:", "items": ["1- Hipogastrio.", "2- Epicondrio derecho.", "3- Fosa poplítea.", "4- Fosa iliaca izquierda.", "5- Mesogastrio."], "options": ["1, 4 y 5", "1, 2 y 5", "1, 3 y 5", "1, 2 y 3", "3, 4 y 5"], "correct": "1, 4 y 5", "explanation": "Respuesta correcta oficial validada para Morfofisiología I.", "mnemonic": ""}, {"id": 22, "topic": "Planimetría y Términos Direccionales", "type": "true_false", "question": "Teniendo en cuenta las posiciones anatómicas, seleccione a cuál se refiere la siguiente descripción: Paciente acostado sobre su espalda, en un plano paralelo al plano del suelo, con los brazos y piernas extendidas. Decúbito supino Decúbito prono Decúbito lateral Posición de Trendelemburg Posición anti-Trenedelemburg Teniendo en cuenta las posiciones anatómicas, seleccione a cuál se refiere la siguiente descripción: Paciente acostado sobre su pecho y abdomen, en un plano paralelo al plano del suelo, con la cabeza girada lateralmente, los brazos extendidos al lado del cuerpo y las piernas extendidas. Decúbito prono Decúbito supino Decúbito lateral Posición de Trendelemburg Posición anti-Trenedelemburg Teniendo en cuenta las posiciones anatómicas, seleccione a cuál se refiere la siguiente descripción: Paciente acostado sobre su espalda, en un plano inclinado 45° respecto al plano del suelo, de forma que la cabeza se encuentre más baja que los pies. Posición de Trendelemburg Posición anti-Trendelemburg Decúbito supino Decúbito prono Posición de Fowler Teniendo en cuenta las posiciones anatómicas, seleccione a cuál se refiere la siguiente descripción: Paciente acostado sobre su espalda, en un plano inclinado 45° respecto al plano del suelo, de forma que los pies se encuentren más bajos que la cabeza. Posición anti-Trendelemburg Posición de Trendelemburg Decúbito supino Decúbito prono Posición de Fowler Teniendo en cuenta las posiciones anatómicas, seleccione a cuál se refiere la siguiente descripción: Paciente semisentado, con un ángulo de inclinación de 45° entre la cabeza, miembros superiores, tórax y abdomen con respecto a las extremidades inferiores. Posición de Fowler Posición semi-Fowler Posición de Trendelemburg Posición anti-Trendelemburg Posición ginecológica Teniendo en cuenta las posiciones anatómicas, seleccione a cuál se refiere la siguiente descripción: Paciente semisentado, con un ángulo de inclinación de 30° entre la cabeza, miembros superiores, tórax y abdomen con respecto a las extremidades inferiores. Posición semi-Fowler Posición de Fowler Posición de Trendelemburg Posición anti-Trendelemburg Posición genupectoral Teniendo en cuenta las posiciones anatómicas, responda si es Verdadero o Falso el siguiente enunciado: La posición decúbito supino se puede utilizar para la exploración del abdomen.", "items": [], "options": ["Verdadero", "Falso"], "correct": "Verdadero", "explanation": "Lateral: Estructura alejada de la línea media hacia los lados.", "mnemonic": "💡 Mnemotecnia: Supino = Súplica (boca arriba). Prono = Prostrado (boca abajo)."}, {"id": 23, "topic": "Posiciones Anatómicas", "type": "true_false", "question": "Teniendo en cuenta las posiciones anatómicas, responda si es Verdadero o Falso el siguiente enunciado: La posición de Trendelemburg es la ideal para la exploración de la cabeza, cuello y mamas.", "items": [], "options": ["Verdadero", "Falso"], "correct": "Verdadero", "explanation": "Trendelenburg: Decúbito supino inclinado donde la cabeza queda más baja que los pies.", "mnemonic": ""}, {"id": 24, "topic": "Posiciones Anatómicas", "type": "true_false", "question": "Teniendo en cuenta las posiciones anatómicas, responda si es Verdadero o Falso el siguiente enunciado: La posición de Fowler se utiliza en pacientes con enfermedades cardiacas y respiratorias.", "items": [], "options": ["Verdadero", "Falso"], "correct": "Verdadero", "explanation": "Posición de Fowler: Semisentado a 45°-60°, ideal para respiración y tóraces.", "mnemonic": ""}, {"id": 25, "topic": "Posiciones Anatómicas", "type": "true_false", "question": "Teniendo en cuenta las posiciones anatómicas, responda si es Verdadero o Falso el siguiente enunciado: La posición de anti-Trendelemburg es la ideal para la exploración de la cabeza, cuello y mamas.", "items": [], "options": ["Verdadero", "Falso"], "correct": "Verdadero", "explanation": "Trendelenburg: Decúbito supino inclinado donde la cabeza queda más baja que los pies.", "mnemonic": ""}, {"id": 26, "topic": "Posiciones Anatómicas", "type": "true_false", "question": "Teniendo en cuenta las posiciones anatómicas, responda si es Verdadero o Falso el siguiente enunciado: La posición decúbito prono se puede utilizar para los tratamientos de fisioterapia en la columna vertebral.", "items": [], "options": ["Verdadero", "Falso"], "correct": "Verdadero", "explanation": "Decúbito prono: Acostado sobre el pecho/abdomen mirando hacia abajo.", "mnemonic": "💡 Mnemotecnia: Supino = Súplica (boca arriba). Prono = Prostrado (boca abajo)."}, {"id": 27, "topic": "Posiciones Anatómicas", "type": "true_false", "question": "Teniendo en cuenta las posiciones anatómicas, responda si es Verdadero o Falso el siguiente enunciado: La posición de Trendelemburg se utiliza en pacientes con lipotimias (desmayos) y en shock.", "items": [], "options": ["Verdadero", "Falso"], "correct": "Verdadero", "explanation": "Trendelenburg: Decúbito supino inclinado donde la cabeza queda más baja que los pies.", "mnemonic": ""}, {"id": 28, "topic": "Posiciones Anatómicas", "type": "true_false", "question": "Teniendo en cuenta las posiciones anatómicas, responda si es Verdadero o Falso el siguiente enunciado: La posición anti-Trendelemburg se utiliza para favorecer el descanso y facilitar la respiración en paciente con dificultad respiratoria.", "items": [], "options": ["Verdadero", "Falso"], "correct": "Verdadero", "explanation": "Trendelenburg: Decúbito supino inclinado donde la cabeza queda más baja que los pies.", "mnemonic": ""}, {"id": 29, "topic": "Biología Celular y Tejidos", "type": "multiple_selection", "question": "De las siguientes afirmaciones relacionadas con la organización interna del cuerpo humano, determine cuáles son las correctas y seleccione la respuesta que se ajuste a su criterio:", "items": ["1- Los bioelementos son los elementos químicos presentes en los seres vivos.", "2- Los bioelementos primarios se encuentran presentes en cantidades ínfimas en la materia viva.", "3- Las micromoléculas son de estructura muy compleja y de alto peso molecular.", "4- Los aminoácidos son ejemplos de micromoléculas.", "5- Los ácidos nucleicos son ejemplos de macromoléculas."], "options": ["1, 4 y 5", "1, 3 y 5", "1, 2 y 3", "3, 4 y 5", "1, 2 y 5"], "correct": "1, 4 y 5", "explanation": "Respuesta correcta oficial validada para Morfofisiología I.", "mnemonic": ""}, {"id": 30, "topic": "Biología Celular y Tejidos", "type": "multiple_selection", "question": "De las siguientes afirmaciones relacionadas con la organización interna del cuerpo humano, determine cuáles son las correctas y seleccione la respuesta que se ajuste a su criterio:", "items": ["1- El yodo (I), el cobalto (Co), el flúor (F) y el cinc (Zn) son bioelementos primarios.", "2- Las proteínas y los polisacáridos son ejemplos de macromoléculas.", "3- Las macromoléculas son de estructura muy compleja y de alto peso molecular.", "4- Los lípidos complejos y los ácidos nucleicos son ejemplos de micromoléculas.", "5- El carbono (C), el hidrógeno (H), el oxígeno (O) y el nitrógeno (N) son bioelementos primarios."], "options": ["2, 3 y 5", "1, 2 y 3", "3, 4 y 5", "1, 3 y 5", "2, 3 y 4"], "correct": "2, 3 y 5", "explanation": "Respuesta correcta oficial validada para Morfofisiología I.", "mnemonic": ""}, {"id": 31, "topic": "Biología Celular y Tejidos", "type": "multiple_selection", "question": "De las siguientes afirmaciones relacionadas con la organización interna del cuerpo humano, determine cuáles son las correctas y seleccione la respuesta que se ajuste a su criterio:", "items": ["1- La célula es la unidad básica estructural y funcional de los organismos vivos.", "2- La membrana citoplasmática alberga la información genética de la célula.", "3- Los ribosomas, el retículo endoplasmático y las mitocondrias son orgánulos presentes en el citoplasma de la célula.", "4- El núcleo forma la superficie flexible externa de la célula y separa su medio interno del medio externo.", "5- La membrana citoplasmática es una barrera selectiva entre el interior y exterior de la célula."], "options": ["1, 3 y 5", "2, 3 y 4", "1, 2 y 3", "3, 4 y 5", "2, 4 y 5"], "correct": "1, 3 y 5", "explanation": "Respuesta correcta oficial validada para Morfofisiología I.", "mnemonic": ""}, {"id": 32, "topic": "Biología Celular y Tejidos", "type": "true_false", "question": "Teniendo en cuenta la organización interna del cuerpo humano, responda si es Verdadero o Falso el siguiente enunciado: La célula procariota es más grande y compleja que la eucariota.", "items": [], "options": ["Verdadero", "Falso"], "correct": "Verdadero", "explanation": "Respuesta correcta oficial validada para Morfofisiología I.", "mnemonic": ""}, {"id": 33, "topic": "Biología Celular y Tejidos", "type": "true_false", "question": "Teniendo en cuenta la organización interna del cuerpo humano, responda si es Verdadero o Falso el siguiente enunciado: La célula eucariota está presente en los reinos protista, hongo, vegetal y animal.", "items": [], "options": ["Verdadero", "Falso"], "correct": "Verdadero", "explanation": "Respuesta correcta oficial validada para Morfofisiología I.", "mnemonic": ""}, {"id": 34, "topic": "Cavidades y Topografía Abdominal", "type": "multiple_selection", "question": "Teniendo en cuenta la organización interna del cuerpo humano, seleccione a cuál tejido se refiere la siguiente descripción: Tejido que reviste superficies corporales y tapiza órganos huecos, cavidades y conductos. Epitelial Conjuntivo óseo Nervioso Muscular Conectivo líquido Teniendo en cuenta la división del esqueleto humano, seleccione en cuál se encuentran los huesos de la cintura escapular y de la cintura pelviana. Esqueleto apendicular Esqueleto axial Teniendo en cuenta la división del esqueleto humano, seleccione en cuál se encuentran los huesos de la cabeza, de la columna vertebral y del tórax. Esqueleto axial Esqueleto apendicular De las siguientes opciones, determine las que sean células óseas y seleccione la respuesta que se ajuste a su criterio:", "items": ["1- Oligodendrocitos.", "2- Osteoclastos.", "3- Osteomielitis.", "4- Osteocitos.", "5- Osteoblastos."], "options": ["2, 4 y 5", "1, 2 y 3", "3, 4 y 5", "1, 3 y 5", "1, 2 y 4"], "correct": "2, 4 y 5", "explanation": "Tejido epitelial: Tapiza cavidades, conductos y reviste superficies.", "mnemonic": ""}, {"id": 35, "topic": "Sistema Óseo y Esqueleto", "type": "true_false", "question": "Teniendo en cuenta la clasificación de los huesos, responda si es Verdadero o Falso el siguiente enunciado: Los huesos largos están formados por epífisis, metáfisis y diáfisis.", "items": [], "options": ["Verdadero", "Falso"], "correct": "Verdadero", "explanation": "Respuesta correcta oficial validada para Morfofisiología I.", "mnemonic": ""}, {"id": 36, "topic": "Planimetría y Términos Direccionales", "type": "true_false", "question": "Teniendo en cuenta la clasificación de los huesos, responda si es Verdadero o Falso el siguiente enunciado: El esternón y las costillas son ejemplos de huesos largos.", "items": [], "options": ["Verdadero", "Falso"], "correct": "Verdadero", "explanation": "Respuesta correcta oficial validada para Morfofisiología I.", "mnemonic": ""}, {"id": 37, "topic": "Planimetría y Términos Direccionales", "type": "true_false", "question": "Teniendo en cuenta la clasificación de los huesos, responda si es Verdadero o Falso el siguiente enunciado: Los huesos de la cara son ejemplos de huesos irregulares.", "items": [], "options": ["Verdadero", "Falso"], "correct": "Verdadero", "explanation": "Respuesta correcta oficial validada para Morfofisiología I.", "mnemonic": ""}, {"id": 38, "topic": "Planimetría y Términos Direccionales", "type": "true_false", "question": "Teniendo en cuenta la clasificación de los huesos, responda si es Verdadero o Falso el siguiente enunciado: Las vértebras son ejemplos de huesos irregulares.", "items": [], "options": ["Verdadero", "Falso"], "correct": "Verdadero", "explanation": "Respuesta correcta oficial validada para Morfofisiología I.", "mnemonic": ""}, {"id": 39, "topic": "Planimetría y Términos Direccionales", "type": "true_false", "question": "Teniendo en cuenta la clasificación de los huesos, responda si es Verdadero o Falso el siguiente enunciado: El radio y el cúbito son ejemplos de huesos largos.", "items": [], "options": ["Verdadero", "Falso"], "correct": "Verdadero", "explanation": "Respuesta correcta oficial validada para Morfofisiología I.", "mnemonic": ""}, {"id": 40, "topic": "Planimetría y Términos Direccionales", "type": "true_false", "question": "Teniendo en cuenta la clasificación de los huesos, responda si es Verdadero o Falso el siguiente enunciado: Los huesos metacarpianos son ejemplos de huesos cortos.", "items": [], "options": ["Verdadero", "Falso"], "correct": "Verdadero", "explanation": "Respuesta correcta oficial validada para Morfofisiología I.", "mnemonic": ""}, {"id": 41, "topic": "Sistema Óseo y Esqueleto", "type": "true_false", "question": "Teniendo en cuenta lo aprendido sobre el sistema óseo, responda si es Verdadero o Falso el siguiente enunciado: La médula ósea amarilla se encarga de la producción de glóbulos blancos, glóbulos rojos y plaquetas.", "items": [], "options": ["Verdadero", "Falso"], "correct": "Verdadero", "explanation": "Respuesta correcta oficial validada para Morfofisiología I.", "mnemonic": ""}, {"id": 42, "topic": "Sistema Óseo y Esqueleto", "type": "true_false", "question": "Teniendo en cuenta lo aprendido sobre el sistema óseo, responda si es Verdadero o Falso el siguiente enunciado: Los huesos temporales y parietales forman parte de los huesos del cráneo.", "items": [], "options": ["Verdadero", "Falso"], "correct": "Verdadero", "explanation": "Respuesta correcta oficial validada para Morfofisiología I.", "mnemonic": ""}, {"id": 43, "topic": "Sistema Óseo y Esqueleto", "type": "true_false", "question": "Teniendo en cuenta lo aprendido sobre el sistema óseo, responda si es Verdadero o Falso el siguiente enunciado: La columna vertebral se compone de 7 vértebras cervicales, 12 torácicas, 5 lumbares, 5 sacras y 4 coccígeas.", "items": [], "options": ["Verdadero", "Falso"], "correct": "Verdadero", "explanation": "Respuesta correcta oficial validada para Morfofisiología I.", "mnemonic": ""}, {"id": 44, "topic": "Sistema Óseo y Esqueleto", "type": "true_false", "question": "Teniendo en cuenta lo aprendido sobre el sistema óseo, responda si es Verdadero o Falso el siguiente enunciado: Los huesos frontal y occipital forman parte de los huesos del cráneo.", "items": [], "options": ["Verdadero", "Falso"], "correct": "Verdadero", "explanation": "El plano frontal (coronal) divide el cuerpo en partes anterior (adelante) y posterior (atrás).", "mnemonic": ""}, {"id": 45, "topic": "Sistema Óseo y Esqueleto", "type": "true_false", "question": "Teniendo en cuenta lo aprendido sobre el sistema óseo, responda si es Verdadero o Falso el siguiente enunciado: Las costillas falsas se articulan directamente con el esternón.", "items": [], "options": ["Verdadero", "Falso"], "correct": "Verdadero", "explanation": "Respuesta correcta oficial validada para Morfofisiología I.", "mnemonic": ""}, {"id": 46, "topic": "Sistema Óseo y Esqueleto", "type": "true_false", "question": "Teniendo en cuenta lo aprendido sobre el sistema óseo, responda si es Verdadero o Falso el siguiente enunciado: Los huesos del tarso y del metatarso pertenecen a la extremidad superior.", "items": [], "options": ["Verdadero", "Falso"], "correct": "Verdadero", "explanation": "Respuesta correcta oficial validada para Morfofisiología I.", "mnemonic": ""}, {"id": 47, "topic": "Biología Celular y Tejidos", "type": "true_false", "question": "Teniendo en cuenta lo aprendido sobre el sistema óseo, responda si es Verdadero o Falso el siguiente enunciado: Las células osteogénicas son células óseas maduras que no experimentan división celular.", "items": [], "options": ["Verdadero", "Falso"], "correct": "Verdadero", "explanation": "Respuesta correcta oficial validada para Morfofisiología I.", "mnemonic": ""}, {"id": 48, "topic": "Biología Celular y Tejidos", "type": "true_false", "question": "Teniendo en cuenta lo aprendido sobre el sistema óseo, responda si es Verdadero o Falso el siguiente enunciado: Los osteocitos liberan poderosas enzimas y ácidos, por lo que participan en la reabsorción del tejido óseo.", "items": [], "options": ["Verdadero", "Falso"], "correct": "Verdadero", "explanation": "Osteocitos: Células maduras que mantienen la matriz ósea diaria.", "mnemonic": "💡 Mnemotecnia: Blasto = Builder (Construye). Clasto = Come/Cataboliza (Destruye). Cito = Célula madura."}, {"id": 49, "topic": "Biología Celular y Tejidos", "type": "true_false", "question": "Teniendo en cuenta lo aprendido sobre el sistema óseo, responda si es Verdadero o Falso el siguiente enunciado: El tejido óseo esponjoso está compuesto por laminillas dispuestas en un patrón irregular de finas columnas, entre las que existen espacios libres.", "items": [], "options": ["Verdadero", "Falso"], "correct": "Verdadero", "explanation": "Respuesta correcta oficial validada para Morfofisiología I.", "mnemonic": ""}, {"id": 50, "topic": "Sistema Óseo y Esqueleto", "type": "true_false", "question": "Teniendo en cuenta lo aprendido sobre el sistema óseo, responda si es Verdadero o Falso el siguiente enunciado: Los extremos de los huesos largos se denominan epífisis.", "items": [], "options": ["Verdadero", "Falso"], "correct": "Verdadero", "explanation": "Respuesta correcta oficial validada para Morfofisiología I.", "mnemonic": ""}, {"id": 51, "topic": "Sistema Óseo y Esqueleto", "type": "true_false", "question": "Teniendo en cuenta lo aprendido sobre el sistema óseo, responda si es Verdadero o Falso el siguiente enunciado: La médula ósea roja se encarga del proceso de hematopoyesis.", "items": [], "options": ["Verdadero", "Falso"], "correct": "Verdadero", "explanation": "Respuesta correcta oficial validada para Morfofisiología I.", "mnemonic": ""}, {"id": 52, "topic": "Planimetría y Términos Direccionales", "type": "multiple_selection", "question": "De las siguientes opciones, determine las que sean ejemplos de huesos largos y seleccione la respuesta que se ajuste a su criterio:", "items": ["1- Escápula.", "2- Húmero.", "3- Calcáneo.", "4- Metacarpianos.", "5- Fémur."], "options": ["2, 4 y 5", "1, 2 y 3", "3, 4 y 5", "1, 3 y 5", "1, 2 y 4"], "correct": "2, 4 y 5", "explanation": "Respuesta correcta oficial validada para Morfofisiología I.", "mnemonic": ""}, {"id": 53, "topic": "Planimetría y Términos Direccionales", "type": "multiple_selection", "question": "De las siguientes opciones, determine las que sean ejemplos de huesos cortos y seleccione la respuesta que se ajuste a su criterio:", "items": ["1- Escafoides.", "2- Radio.", "3- Astrágalo.", "4- Metatarsianos.", "5- Semilunar."], "options": ["1, 3 y 5", "1, 2 y 3", "3, 4 y 5", "2, 4 y 5", "1, 2 y 4"], "correct": "1, 3 y 5", "explanation": "Respuesta correcta oficial validada para Morfofisiología I.", "mnemonic": ""}, {"id": 54, "topic": "Planimetría y Términos Direccionales", "type": "multiple_selection", "question": "De las siguientes opciones, determine las que sean ejemplos de huesos planos y seleccione la respuesta que se ajuste a su criterio:", "items": ["1- Esternón.", "2- Frontal.", "3- Rótula.", "4- Carpianos.", "5- Costillas."], "options": ["1, 2 y 5", "1, 2 y 3", "3, 4 y 5", "2, 4 y 5", "1, 2 y 4"], "correct": "1, 2 y 5", "explanation": "Respuesta correcta oficial validada para Morfofisiología I.", "mnemonic": ""}, {"id": 55, "topic": "Planimetría y Términos Direccionales", "type": "multiple_selection", "question": "De las siguientes opciones, determine las que sean ejemplos de huesos irregulares y seleccione la respuesta que se ajuste a su criterio:", "items": ["1- Escápula.", "2- Vértebras.", "3- Maxilares superiores.", "4- Calcáneo.", "5- Frontal."], "options": ["2, 3 y 4", "1, 2 y 3", "3, 4 y 5", "2, 4 y 5", "1, 2 y 4"], "correct": "2, 3 y 4", "explanation": "Respuesta correcta oficial validada para Morfofisiología I.", "mnemonic": ""}, {"id": 56, "topic": "Sistema Óseo y Esqueleto", "type": "multiple_selection", "question": "De las siguientes opciones, determine las que sean funciones del sistema óseo y seleccione la respuesta que se ajuste a su criterio:", "items": ["1- Protección.", "2- Generación de calor.", "3- Movimiento.", "4- Sensibilidad.", "5- Reserva energética."], "options": ["1, 3 y 5", "1, 2 y 3", "3, 4 y 5", "2, 4 y 5", "1, 2 y 4"], "correct": "1, 3 y 5", "explanation": "Respuesta correcta oficial validada para Morfofisiología I.", "mnemonic": ""}, {"id": 57, "topic": "Sistema Óseo y Esqueleto", "type": "multiple_selection", "question": "De las siguientes opciones, determine las que sean funciones del sistema óseo y seleccione la respuesta que se ajuste a su criterio:", "items": ["1- Inmunológica.", "2- Sostén.", "3- Metabolismo mineral.", "4- Hematopoyesis.", "5- Transporte de gases."], "options": ["2, 3 y 4", "1, 2 y 3", "3, 4 y 5", "2, 4 y 5", "1, 3 y 5"], "correct": "2, 3 y 4", "explanation": "Respuesta correcta oficial validada para Morfofisiología I.", "mnemonic": ""}, {"id": 58, "topic": "Sistema Óseo y Esqueleto", "type": "multiple_selection", "question": "De las siguientes opciones, determine las que sean huesos de la cara y seleccione la respuesta que se ajuste a su criterio:", "items": ["1- Cigomático.", "2- Hioides.", "3- Maxilar inferior.", "4- Cornetes.", "5- Temporal."], "options": ["1, 3 y 4", "1, 2 y 3", "3, 4 y 5", "2, 4 y 5", "1, 2 y 4"], "correct": "1, 3 y 4", "explanation": "Respuesta correcta oficial validada para Morfofisiología I.", "mnemonic": ""}, {"id": 59, "topic": "Sistema Óseo y Esqueleto", "type": "multiple_selection", "question": "De las siguientes opciones, determine las que sean huesos de la cara y seleccione la respuesta que se ajuste a su criterio:", "items": ["1- Etmoides.", "2- Palatinos.", "3- Martillo.", "4- Lagrimales.", "5- Vómer."], "options": ["2, 4 y 5", "1, 2 y 3", "3, 4 y 5", "2, 3 y 5", "1, 2 y 4"], "correct": "2, 4 y 5", "explanation": "Respuesta correcta oficial validada para Morfofisiología I.", "mnemonic": ""}, {"id": 60, "topic": "Sistema Óseo y Esqueleto", "type": "multiple_choice", "question": "A la fontanela localizada en la confluencia de los huesos parietales y frontal, se le denomina:", "items": [], "options": ["Fontanela anterior", "Fontanela posterior", "Fontanela anterolateral", "Fontanela posterolateral", "Disco intervertebral"], "correct": "Fontanela anterior", "explanation": "El plano frontal (coronal) divide el cuerpo en partes anterior (adelante) y posterior (atrás).", "mnemonic": ""}, {"id": 61, "topic": "Sistema Óseo y Esqueleto", "type": "multiple_choice", "question": "A la fontanela localizada en la confluencia de los huesos parietales y occipital, se le denomina:", "items": [], "options": ["Fontanela posterior", "Fontanela anterior", "Fontanela anterolateral", "Fontanela posterolateral", "Articulación frontonasal"], "correct": "Fontanela posterior", "explanation": "Respuesta correcta oficial validada para Morfofisiología I.", "mnemonic": ""}, {"id": 62, "topic": "Sistema Óseo y Esqueleto", "type": "multiple_choice", "question": "A la fontanela localizada en la confluencia de los huesos parietal, temporal, frontal y esfenoidal, se le denomina:", "items": [], "options": ["Fontanela anterolateral", "Fontanela anterior", "Fontanela posterior", "Fontanela posterolateral", "Sínfisis del pubis"], "correct": "Fontanela anterolateral", "explanation": "El plano frontal (coronal) divide el cuerpo en partes anterior (adelante) y posterior (atrás).", "mnemonic": ""}, {"id": 63, "topic": "Sistema Óseo y Esqueleto", "type": "multiple_choice", "question": "A la fontanela localizada en la confluencia de los huesos parietal, temporal y occipital, se le denomina:", "items": [], "options": ["Fontanela posterolateral", "Fontanela anterior", "Fontanela posterior", "Fontanela anterolateral", "Articulación temporomandibular"], "correct": "Fontanela posterolateral", "explanation": "Lateral: Estructura alejada de la línea media hacia los lados.", "mnemonic": ""}, {"id": 64, "topic": "Sistema Óseo y Esqueleto", "type": "multiple_selection", "question": "De las siguientes opciones, determine las que sean partes de una vértebra típica y seleccione la respuesta que se ajuste a su criterio:", "items": ["1- Manubrio.", "2- Apófisis espinosa.", "3- Apófisis transversa.", "4- Cuerpo vertebral.", "5- Agujero obturador."], "options": ["2, 3 y 4", "1, 2 y 3", "3, 4 y 5", "1, 3 y 5", "1, 2 y 4"], "correct": "2, 3 y 4", "explanation": "Respuesta correcta oficial validada para Morfofisiología I.", "mnemonic": ""}, {"id": 65, "topic": "Sistema Óseo y Esqueleto", "type": "multiple_selection", "question": "De las siguientes opciones, determine las que sean huesos de la extremidad superior y seleccione la respuesta que se ajuste a su criterio:", "items": ["1- Húmero.", "2- Tibia.", "3- Radio.", "4- Esternón.", "5- Calcáneo."], "options": ["1, 3 y 5", "1, 2 y 3", "3, 4 y 5", "2, 4 y 5", "1, 2 y 4"], "correct": "1, 3 y 5", "explanation": "Respuesta correcta oficial validada para Morfofisiología I.", "mnemonic": ""}, {"id": 66, "topic": "Sistema Óseo y Esqueleto", "type": "multiple_selection", "question": "De las siguientes opciones, determine las que sean huesos de la extremidad superior y seleccione la respuesta que se ajuste a su criterio:", "items": ["1- Fémur.", "2- Cúbito.", "3- Metacarpianos.", "4- Escafoides.", "5- Peroné."], "options": ["2, 3 y 4", "1, 2 y 3", "3, 4 y 5", "2, 4 y 5", "1, 2 y 4"], "correct": "2, 3 y 4", "explanation": "Respuesta correcta oficial validada para Morfofisiología I.", "mnemonic": ""}, {"id": 67, "topic": "Sistema Óseo y Esqueleto", "type": "multiple_selection", "question": "De las siguientes opciones, determine las que sean huesos de la extremidad inferior y seleccione la respuesta que se ajuste a su criterio:", "items": ["1- Rótula.", "2- Fémur.", "3- Metacarpianos.", "4- Cúbito.", "5- Peroné."], "options": ["1, 2 y 5", "1, 2 y 3", "3, 4 y 5", "2, 4 y 5", "1, 3 y 4"], "correct": "1, 2 y 5", "explanation": "Respuesta correcta oficial validada para Morfofisiología I.", "mnemonic": ""}, {"id": 68, "topic": "Sistema Óseo y Esqueleto", "type": "multiple_selection", "question": "De las siguientes opciones, determine las que sean huesos de la extremidad inferior y seleccione la respuesta que se ajuste a su criterio:", "items": ["1- Semilunar.", "2- Metacarpianos.", "3- Tibia.", "4- Astrágalo.", "5- Fémur."], "options": ["3, 4 y 5", "1, 2 y 3", "2, 3 y 5", "2, 4 y 5", "1, 3 y 5"], "correct": "3, 4 y 5", "explanation": "Respuesta correcta oficial validada para Morfofisiología I.", "mnemonic": ""}, {"id": 69, "topic": "Planimetría y Términos Direccionales", "type": "multiple_selection", "question": "Teniendo en cuenta las características de los huesos del esqueleto axial, seleccione a cuál hueso se refiere la siguiente descripción: Hueso plano, situado en el centro de la pared torácica anterior y está formado por manubrio, cuerpo y apófisis xifoides. Esternón Escápula Vértebras torácicas Clavícula Coxal Teniendo en cuenta las características de los huesos del esqueleto axial, seleccione a cuáles huesos se refiere la siguiente descripción: Huesos planos, que se articulan directamente con el esternón. Costillas verdaderas Costillas falsas Costillas flotantes Vértebras torácicas Vértebras cervicales Teniendo en cuenta las características de los huesos del esqueleto axial, seleccione a cuáles huesos se refiere la siguiente descripción: Huesos planos, que no se articulan en sus extremos anteriores. Costillas flotantes Costillas falsas Costillas verdaderas Vértebras torácicas Clavícula Teniendo en cuenta las características de los huesos del esqueleto apendicular, seleccione a cuál hueso se refiere la siguiente descripción: Hueso largo, que forma el brazo. Húmero Radio Cúbito Clavícula Escápula Teniendo en cuenta las características de los huesos del esqueleto apendicular, seleccione a cuál hueso se refiere la siguiente descripción: Hueso largo, que se encuentra lateral en el antebrazo. Radio Cúbito Húmero Peroné Metacarpianos Teniendo en cuenta las características de los huesos del esqueleto apendicular, seleccione a cuál hueso se refiere la siguiente descripción: Hueso largo, que se encuentra medial en el antebrazo. Cúbito Radio Húmero Peroné Tibia Teniendo en cuenta las características de los huesos del esqueleto apendicular, seleccione a cuál hueso se refiere la siguiente descripción: Hueso largo, que forma el muslo. Fémur Tibia Peroné Astrágalo Sacro Teniendo en cuenta las características de los huesos del esqueleto apendicular, seleccione a cuál hueso se refiere la siguiente descripción: Hueso largo, que se encuentra medial en la pierna. Tibia Peroné Fémur Radio Cúbito De las siguientes opciones, determine las que sean ejemplos de articulaciones inmóviles y seleccione la respuesta que se ajuste a su criterio:", "items": ["1- Articulación interparietal.", "2- Articulación de la rodilla.", "3- Articulación intervertebral.", "4- Articulación frontonasal.", "5- Articulación parietotemporal."], "options": ["1, 4 y 5", "1, 2 y 3", "3, 4 y 5", "2, 3 y 5", "1, 2 y 4"], "correct": "1, 4 y 5", "explanation": "Medial: Estructura cercana a la línea media del cuerpo.", "mnemonic": ""}, {"id": 70, "topic": "Planimetría y Términos Direccionales", "type": "multiple_selection", "question": "De las siguientes opciones, determine las que sean ejemplos de articulaciones inmóviles y seleccione la respuesta que se ajuste a su criterio:", "items": ["1- Articulación temporomandibular.", "2- Articulación parietoccipital.", "3- Articulación nasonasal.", "4- Articulación frontoparietal.", "5- Articulación esternocostal."], "options": ["2, 3 y 4", "1, 2 y 3", "3, 4 y 5", "1, 3 y 5", "1, 2 y 4"], "correct": "2, 3 y 4", "explanation": "Respuesta correcta oficial validada para Morfofisiología I.", "mnemonic": ""}, {"id": 71, "topic": "Planimetría y Términos Direccionales", "type": "multiple_selection", "question": "De las siguientes opciones, determine las que sean ejemplos de articulaciones semimóviles y seleccione la respuesta que se ajuste a su criterio:", "items": ["1- Articulación esternocostal.", "2- Articulación sínfisis del pubis.", "3- Articulación del hombro.", "4- Articulación interparietal.", "5- Articulación intervertebral."], "options": ["1, 2 y 5", "1, 2 y 3", "3, 4 y 5", "1, 3 y 5", "2, 3 y 4"], "correct": "1, 2 y 5", "explanation": "Respuesta correcta oficial validada para Morfofisiología I.", "mnemonic": ""}, {"id": 72, "topic": "Planimetría y Términos Direccionales", "type": "multiple_selection", "question": "De las siguientes opciones, determine las que sean ejemplos de articulaciones semimóviles y seleccione la respuesta que se ajuste a su criterio:", "items": ["1- Articulación sínfisis del pubis.", "2- Ligamentos interóseos.", "3- Placas de crecimiento.", "4- Articulación temporomandibular.", "5- Articulación esternocostal."], "options": ["1, 3 y 5", "1, 2 y 3", "3, 4 y 5", "2, 4 y 5", "2, 3 y 4"], "correct": "1, 3 y 5", "explanation": "Respuesta correcta oficial validada para Morfofisiología I.", "mnemonic": ""}, {"id": 73, "topic": "Planimetría y Términos Direccionales", "type": "multiple_selection", "question": "De las siguientes opciones, determine las que sean ejemplos de articulaciones móviles y seleccione la respuesta que se ajuste a su criterio:", "items": ["1- Articulación frontonasal.", "2- Placas de crecimiento.", "3- Articulación temporomandibular.", "4- Articulación del hombro.", "5- Articulación del tobillo."], "options": ["3, 4 y 5", "1, 2 y 3", "1, 3 y 5", "2, 4 y 5", "2, 3 y 4"], "correct": "3, 4 y 5", "explanation": "Respuesta correcta oficial validada para Morfofisiología I.", "mnemonic": ""}, {"id": 74, "topic": "Planimetría y Términos Direccionales", "type": "multiple_selection", "question": "De las siguientes opciones, determine las que sean ejemplos de articulaciones móviles y seleccione la respuesta que se ajuste a su criterio:", "items": ["1- Articulación parietoccipital.", "2- Articulación interfalángica.", "3- Articulación del codo.", "4- Articulación de la cadera.", "5- Articulación intervertebral."], "options": ["2, 3 y 4", "1, 2 y 3", "1, 3 y 5", "1, 4 y 5", "3, 4 y 5"], "correct": "2, 3 y 4", "explanation": "Respuesta correcta oficial validada para Morfofisiología I.", "mnemonic": ""}, {"id": 75, "topic": "Articulaciones (Artrología)", "type": "multiple_selection", "question": "De las siguientes opciones, determine las que sean elementos de las diartrosis y seleccione la respuesta que se ajuste a su criterio:", "items": ["1- Cartílago articular.", "2- Músculo orbicular.", "3- Meniscos.", "4- Cavidad pleural.", "5- Ligamentos accesorios."], "options": ["1, 3 y 5", "1, 2 y 3", "2, 3 y 4", "1, 4 y 5", "3, 4 y 5"], "correct": "1, 3 y 5", "explanation": "Diartrosis: Articulaciones de amplio movimiento libre con cavidad sinovial.", "mnemonic": ""}, {"id": 76, "topic": "Articulaciones (Artrología)", "type": "multiple_selection", "question": "De las siguientes opciones, determine las que sean elementos de las diartrosis y seleccione la respuesta que se ajuste a su criterio:", "items": ["1- Diáfisis de los huesos largos.", "2- Cápsula articular.", "3- Cartílago auricular.", "4- Líquido sinovial.", "5- Meniscos."], "options": ["2, 4 y 5", "1, 2 y 3", "3, 4 y 5", "1, 2 y 5", "2, 3 y 4"], "correct": "2, 4 y 5", "explanation": "Diartrosis: Articulaciones de amplio movimiento libre con cavidad sinovial.", "mnemonic": ""}, {"id": 77, "topic": "Articulaciones (Artrología)", "type": "true_false", "question": "Teniendo en cuenta la clasificación de las articulaciones, responda si es Verdadero o Falso el siguiente enunciado: Las articulaciones inmóviles son diartrosis según su función.", "items": [], "options": ["Verdadero", "Falso"], "correct": "Verdadero", "explanation": "Diartrosis: Articulaciones de amplio movimiento libre con cavidad sinovial.", "mnemonic": ""}, {"id": 78, "topic": "Articulaciones (Artrología)", "type": "true_false", "question": "Teniendo en cuenta la clasificación de las articulaciones, responda si es Verdadero o Falso el siguiente enunciado: Las articulaciones semimóviles son anfiartrosis según su función.", "items": [], "options": ["Verdadero", "Falso"], "correct": "Verdadero", "explanation": "Anfiartrosis: Articulaciones semimóviles (ej. sínfisis púbica).", "mnemonic": ""}, {"id": 79, "topic": "Articulaciones (Artrología)", "type": "true_false", "question": "Teniendo en cuenta la clasificación de las articulaciones, responda si es Verdadero o Falso el siguiente enunciado: Las articulaciones móviles son sinoviales según su estructura.", "items": [], "options": ["Verdadero", "Falso"], "correct": "Verdadero", "explanation": "Respuesta correcta oficial validada para Morfofisiología I.", "mnemonic": ""}, {"id": 80, "topic": "Articulaciones (Artrología)", "type": "true_false", "question": "Teniendo en cuenta la clasificación de las articulaciones, responda si es Verdadero o Falso el siguiente enunciado: Las articulaciones semimóviles son cartilaginosas según su estructura.", "items": [], "options": ["Verdadero", "Falso"], "correct": "Verdadero", "explanation": "Respuesta correcta oficial validada para Morfofisiología I.", "mnemonic": ""}, {"id": 81, "topic": "Articulaciones (Artrología)", "type": "true_false", "question": "Teniendo en cuenta la clasificación de las articulaciones, responda si es Verdadero o Falso el siguiente enunciado: Las articulaciones inmóviles son sinoviales según su estructura.", "items": [], "options": ["Verdadero", "Falso"], "correct": "Verdadero", "explanation": "Respuesta correcta oficial validada para Morfofisiología I.", "mnemonic": ""}, {"id": 82, "topic": "Articulaciones (Artrología)", "type": "true_false", "question": "Teniendo en cuenta la clasificación de las articulaciones, responda si es Verdadero o Falso el siguiente enunciado: Las articulaciones móviles son sinartrosis según su función.", "items": [], "options": ["Verdadero", "Falso"], "correct": "Verdadero", "explanation": "Sinartrosis: Articulaciones inmóviles (ej. suturas craneales).", "mnemonic": ""}, {"id": 83, "topic": "Articulaciones (Artrología)", "type": "true_false", "question": "Teniendo en cuenta lo aprendido sobre el sistema articular, responda si es Verdadero o Falso el siguiente enunciado: Las articulaciones inmóviles son fibrosas según su estructura.", "items": [], "options": ["Verdadero", "Falso"], "correct": "Verdadero", "explanation": "Respuesta correcta oficial validada para Morfofisiología I.", "mnemonic": ""}, {"id": 84, "topic": "Articulaciones (Artrología)", "type": "true_false", "question": "Teniendo en cuenta la clasificación de las articulaciones, responda si es Verdadero o Falso el siguiente enunciado: Las articulaciones semimóviles son sinoviales según su estructura.", "items": [], "options": ["Verdadero", "Falso"], "correct": "Verdadero", "explanation": "Respuesta correcta oficial validada para Morfofisiología I.", "mnemonic": ""}, {"id": 85, "topic": "Articulaciones (Artrología)", "type": "true_false", "question": "Teniendo en cuenta lo aprendido sobre el sistema articular, responda si es Verdadero o Falso el siguiente enunciado: La articulación entre el manubrio y el cuerpo del esternón es una diartrosis.", "items": [], "options": ["Verdadero", "Falso"], "correct": "Verdadero", "explanation": "Diartrosis: Articulaciones de amplio movimiento libre con cavidad sinovial.", "mnemonic": ""}, {"id": 86, "topic": "Articulaciones (Artrología)", "type": "true_false", "question": "Teniendo en cuenta lo aprendido sobre el sistema articular, responda si es Verdadero o Falso el siguiente enunciado: La articulación de la rodilla es sinovial según su estructura.", "items": [], "options": ["Verdadero", "Falso"], "correct": "Verdadero", "explanation": "Respuesta correcta oficial validada para Morfofisiología I.", "mnemonic": ""}, {"id": 87, "topic": "Articulaciones (Artrología)", "type": "true_false", "question": "Teniendo en cuenta lo aprendido sobre el sistema articular, responda si es Verdadero o Falso el siguiente enunciado: Las articulaciones intervertebrales son cartilaginosas según su estructura.", "items": [], "options": ["Verdadero", "Falso"], "correct": "Verdadero", "explanation": "Respuesta correcta oficial validada para Morfofisiología I.", "mnemonic": ""}, {"id": 88, "topic": "Articulaciones (Artrología)", "type": "true_false", "question": "Teniendo en cuenta lo aprendido sobre el sistema articular, responda si es Verdadero o Falso el siguiente enunciado: La articulación sínfisis del pubis es semimóvil.", "items": [], "options": ["Verdadero", "Falso"], "correct": "Verdadero", "explanation": "Respuesta correcta oficial validada para Morfofisiología I.", "mnemonic": ""}, {"id": 89, "topic": "Articulaciones (Artrología)", "type": "true_false", "question": "Teniendo en cuenta lo aprendido sobre el sistema articular, responda si es Verdadero o Falso el siguiente enunciado: La articulación temporomandibular es fibrosa según su estructura.", "items": [], "options": ["Verdadero", "Falso"], "correct": "Verdadero", "explanation": "Respuesta correcta oficial validada para Morfofisiología I.", "mnemonic": ""}, {"id": 90, "topic": "Articulaciones (Artrología)", "type": "true_false", "question": "Teniendo en cuenta lo aprendido sobre el sistema articular, responda si es Verdadero o Falso el siguiente enunciado: La articulación interparietal es fibrosa según su estructura.", "items": [], "options": ["Verdadero", "Falso"], "correct": "Verdadero", "explanation": "Respuesta correcta oficial validada para Morfofisiología I.", "mnemonic": ""}, {"id": 91, "topic": "Articulaciones (Artrología)", "type": "true_false", "question": "Teniendo en cuenta lo aprendido sobre el sistema articular, responda si es Verdadero o Falso el siguiente enunciado: La articulación de la cadera es semimóvil.", "items": [], "options": ["Verdadero", "Falso"], "correct": "Verdadero", "explanation": "Respuesta correcta oficial validada para Morfofisiología I.", "mnemonic": ""}, {"id": 92, "topic": "Articulaciones (Artrología)", "type": "true_false", "question": "Teniendo en cuenta lo aprendido sobre el sistema articular, responda si es Verdadero o Falso el siguiente enunciado: Las articulaciones intervertebrales son cartilaginosas según su estructura.", "items": [], "options": ["Verdadero", "Falso"], "correct": "Verdadero", "explanation": "Respuesta correcta oficial validada para Morfofisiología I.", "mnemonic": ""}, {"id": 93, "topic": "Articulaciones (Artrología)", "type": "true_false", "question": "Teniendo en cuenta lo aprendido sobre el sistema articular, responda si es Verdadero o Falso el siguiente enunciado: La articulación del tobillo es sinovial según su estructura.", "items": [], "options": ["Verdadero", "Falso"], "correct": "Verdadero", "explanation": "Respuesta correcta oficial validada para Morfofisiología I.", "mnemonic": ""}, {"id": 94, "topic": "Articulaciones (Artrología)", "type": "true_false", "question": "Teniendo en cuenta lo aprendido sobre el sistema articular, responda si es Verdadero o Falso el siguiente enunciado: La articulación esternocostal es una anfiartrosis según su función.", "items": [], "options": ["Verdadero", "Falso"], "correct": "Verdadero", "explanation": "Anfiartrosis: Articulaciones semimóviles (ej. sínfisis púbica).", "mnemonic": ""}, {"id": 95, "topic": "Articulaciones (Artrología)", "type": "true_false", "question": "Teniendo en cuenta lo aprendido sobre el sistema articular, responda si es Verdadero o Falso el siguiente enunciado: La articulación del hombro es fibrosa según su estructura.", "items": [], "options": ["Verdadero", "Falso"], "correct": "Verdadero", "explanation": "Respuesta correcta oficial validada para Morfofisiología I.", "mnemonic": ""}, {"id": 96, "topic": "Articulaciones (Artrología)", "type": "true_false", "question": "Teniendo en cuenta lo aprendido sobre el sistema articular, responda si es Verdadero o Falso el siguiente enunciado: Las articulaciones inmóviles son sinoviales según su función.", "items": [], "options": ["Verdadero", "Falso"], "correct": "Verdadero", "explanation": "Respuesta correcta oficial validada para Morfofisiología I.", "mnemonic": ""}, {"id": 97, "topic": "Articulaciones (Artrología)", "type": "true_false", "question": "Teniendo en cuenta lo aprendido sobre el sistema articular, responda si es Verdadero o Falso el siguiente enunciado: La articulación del hombro es sinartrosis según su función.", "items": [], "options": ["Verdadero", "Falso"], "correct": "Verdadero", "explanation": "Sinartrosis: Articulaciones inmóviles (ej. suturas craneales).", "mnemonic": ""}, {"id": 98, "topic": "Articulaciones (Artrología)", "type": "true_false", "question": "Teniendo en cuenta lo aprendido sobre el sistema articular, responda si es Verdadero o Falso el siguiente enunciado: Las articulaciones móviles son diartrosis según su función.", "items": [], "options": ["Verdadero", "Falso"], "correct": "Verdadero", "explanation": "Diartrosis: Articulaciones de amplio movimiento libre con cavidad sinovial.", "mnemonic": ""}, {"id": 99, "topic": "Biología Celular y Tejidos", "type": "multiple_selection", "question": "De las siguientes opciones, determine las que sean características del tejido muscular esquelético y seleccione la respuesta que se ajuste a su criterio:", "items": ["1- Es liso.", "2- Generalmente trabaja de forma voluntaria.", "3- Generalmente trabaja de forma involuntaria.", "4- Es estriado.", "5- Constituye la mayoría de los músculos esqueléticos."], "options": ["2, 4 y 5", "1, 2 y 3", "3, 4 y 5", "1, 3 y 5", "2, 3 y 4"], "correct": "2, 4 y 5", "explanation": "Respuesta correcta oficial validada para Morfofisiología I.", "mnemonic": ""}, {"id": 100, "topic": "Biología Celular y Tejidos", "type": "multiple_selection", "question": "De las siguientes opciones, determine las que sean características del tejido muscular cardiaco y seleccione la respuesta que se ajuste a su criterio:", "items": ["1- Trabaja de forma voluntaria.", "2- Es estriado.", "3- Trabaja de forma involuntaria.", "4- Constituye la mayor parte de la pared del corazón.", "5- Es liso."], "options": ["2, 3 y 4", "1, 2 y 3", "3, 4 y 5", "1, 3 y 5", "1, 2 y 4"], "correct": "2, 3 y 4", "explanation": "Respuesta correcta oficial validada para Morfofisiología I.", "mnemonic": ""}, {"id": 101, "topic": "Biología Celular y Tejidos", "type": "multiple_selection", "question": "De las siguientes opciones, determine las que sean características del tejido muscular liso y seleccione la respuesta que se ajuste a su criterio:", "items": ["1- Constituyen los músculos que forman parte de las paredes del tubo digestivo.", "2- Es estriado.", "3- Generalmente trabaja de forma involuntaria.", "4- Constituyen la mayoría de los músculos esqueléticos.", "5- No es estriado."], "options": ["1, 3 y 5", "1, 2 y 3", "3, 4 y 5", "2, 4 y 5", "1, 2 y 4"], "correct": "1, 3 y 5", "explanation": "Respuesta correcta oficial validada para Morfofisiología I.", "mnemonic": ""}, {"id": 102, "topic": "Sistema Muscular (Miología)", "type": "true_false", "question": "Teniendo en cuenta la clasificación de los músculos, responda si es Verdadero o Falso el siguiente enunciado: Los músculos superficiales están situados inmediatamente por debajo de la piel.", "items": [], "options": ["Verdadero", "Falso"], "correct": "Verdadero", "explanation": "Respuesta correcta oficial validada para Morfofisiología I.", "mnemonic": ""}, {"id": 103, "topic": "Sistema Muscular (Miología)", "type": "true_false", "question": "Teniendo en cuenta la clasificación de los músculos, responda si es Verdadero o Falso el siguiente enunciado: Los músculos esfinterianos son cuadrados, triangulares o rectilíneos.", "items": [], "options": ["Verdadero", "Falso"], "correct": "Verdadero", "explanation": "Respuesta correcta oficial validada para Morfofisiología I.", "mnemonic": ""}, {"id": 104, "topic": "Sistema Muscular (Miología)", "type": "true_false", "question": "Teniendo en cuenta la clasificación de los músculos, responda si es Verdadero o Falso el siguiente enunciado: Los músculos largos son delgados en sus extremos y anchos en la parte central.", "items": [], "options": ["Verdadero", "Falso"], "correct": "Verdadero", "explanation": "Respuesta correcta oficial validada para Morfofisiología I.", "mnemonic": ""}, {"id": 105, "topic": "Sistema Muscular (Miología)", "type": "true_false", "question": "Teniendo en cuenta la clasificación de los músculos, responda si es Verdadero o Falso el siguiente enunciado: Los músculos esfinterianos se ubican dentro de conductos.", "items": [], "options": ["Verdadero", "Falso"], "correct": "Verdadero", "explanation": "Respuesta correcta oficial validada para Morfofisiología I.", "mnemonic": ""}, {"id": 106, "topic": "Sistema Óseo y Esqueleto", "type": "true_false", "question": "Teniendo en cuenta la clasificación de los músculos, responda si es Verdadero o Falso el siguiente enunciado: Los músculos cortos se relacionan con los huesos cortos e irregulares.", "items": [], "options": ["Verdadero", "Falso"], "correct": "Verdadero", "explanation": "Respuesta correcta oficial validada para Morfofisiología I.", "mnemonic": ""}, {"id": 107, "topic": "Sistema Óseo y Esqueleto", "type": "true_false", "question": "Teniendo en cuenta la clasificación de los músculos, responda si es Verdadero o Falso el siguiente enunciado: Los músculos esfinterianos se relacionan con los huesos largos.", "items": [], "options": ["Verdadero", "Falso"], "correct": "Verdadero", "explanation": "Respuesta correcta oficial validada para Morfofisiología I.", "mnemonic": ""}, {"id": 108, "topic": "Planimetría y Términos Direccionales", "type": "true_false", "question": "Teniendo en cuenta lo aprendido sobre el sistema muscular, responda si es Verdadero o Falso el siguiente enunciado: Los músculos de la palma de la mano son ejemplos de músculos anchos y planos.", "items": [], "options": ["Verdadero", "Falso"], "correct": "Verdadero", "explanation": "Respuesta correcta oficial validada para Morfofisiología I.", "mnemonic": ""}, {"id": 109, "topic": "Planimetría y Términos Direccionales", "type": "true_false", "question": "Teniendo en cuenta lo aprendido sobre el sistema muscular, responda si es Verdadero o Falso el siguiente enunciado: El músculo braquiorradial es un ejemplo de músculo largo.", "items": [], "options": ["Verdadero", "Falso"], "correct": "Verdadero", "explanation": "Respuesta correcta oficial validada para Morfofisiología I.", "mnemonic": ""}, {"id": 110, "topic": "Planimetría y Términos Direccionales", "type": "true_false", "question": "Teniendo en cuenta lo aprendido sobre el sistema muscular, responda si es Verdadero o Falso el siguiente enunciado: Los músculos de los canales vertebrales son ejemplos de músculos cortos.", "items": [], "options": ["Verdadero", "Falso"], "correct": "Verdadero", "explanation": "Respuesta correcta oficial validada para Morfofisiología I.", "mnemonic": ""}, {"id": 111, "topic": "Sistema Muscular (Miología)", "type": "true_false", "question": "Teniendo en cuenta lo aprendido sobre el sistema muscular, responda si es Verdadero o Falso el siguiente enunciado: La actividad de los músculos voluntarios es controlada conscientemente.", "items": [], "options": ["Verdadero", "Falso"], "correct": "Verdadero", "explanation": "Respuesta correcta oficial validada para Morfofisiología I.", "mnemonic": ""}, {"id": 112, "topic": "Biología Celular y Tejidos", "type": "true_false", "question": "Teniendo en cuenta lo aprendido sobre el sistema muscular, responda si es Verdadero o Falso el siguiente enunciado: Las aponeurosis, los ligamentos, las fascias y los tendones están constituidos por tejido epitelial.", "items": [], "options": ["Verdadero", "Falso"], "correct": "Verdadero", "explanation": "Tejido epitelial: Tapiza cavidades, conductos y reviste superficies.", "mnemonic": ""}, {"id": 113, "topic": "Sistema Óseo y Esqueleto", "type": "true_false", "question": "Teniendo en cuenta lo aprendido sobre el sistema muscular, responda si es Verdadero o Falso el siguiente enunciado: Las aponeurosis son cordones resistentes que unen los músculos a los huesos.", "items": [], "options": ["Verdadero", "Falso"], "correct": "Verdadero", "explanation": "Respuesta correcta oficial validada para Morfofisiología I.", "mnemonic": ""}, {"id": 114, "topic": "Sistema Óseo y Esqueleto", "type": "true_false", "question": "Teniendo en cuenta lo aprendido sobre el sistema muscular, responda si es Verdadero o Falso el siguiente enunciado: Los tendones son cordones resistentes que unen los músculos a los huesos.", "items": [], "options": ["Verdadero", "Falso"], "correct": "Verdadero", "explanation": "Respuesta correcta oficial validada para Morfofisiología I.", "mnemonic": ""}, {"id": 115, "topic": "Sistema Muscular (Miología)", "type": "true_false", "question": "Teniendo en cuenta lo aprendido sobre el sistema muscular, responda si es Verdadero o Falso el siguiente enunciado: Las aponeurosis son membranas finas de color blanquecino.", "items": [], "options": ["Verdadero", "Falso"], "correct": "Verdadero", "explanation": "Respuesta correcta oficial validada para Morfofisiología I.", "mnemonic": ""}, {"id": 116, "topic": "Biología Celular y Tejidos", "type": "true_false", "question": "Teniendo en cuenta lo aprendido sobre el sistema muscular, responda si es Verdadero o Falso el siguiente enunciado: Los tendones, las fascias, los ligamentos y las aponeurosis están constituidos por tejido conectivo laxo.", "items": [], "options": ["Verdadero", "Falso"], "correct": "Verdadero", "explanation": "Respuesta correcta oficial validada para Morfofisiología I.", "mnemonic": ""}, {"id": 117, "topic": "Planimetría y Términos Direccionales", "type": "multiple_selection", "question": "Teniendo en cuenta las propiedades de los músculos, seleccione a cuál propiedad se refiere la siguiente descripción: Capacidad de responder a ciertos estímulos generando señales eléctricas. Excitabilidad eléctrica Contractilidad Extensibilidad Elasticidad Absorción Teniendo en cuenta las propiedades de los músculos, seleccione a cuál propiedad se refiere la siguiente descripción: Capacidad de contraerse enérgicamente y generar tensión. Contractilidad Excitabilidad eléctrica Extensibilidad Elasticidad Secreción Teniendo en cuenta las propiedades de los músculos, seleccione a cuál propiedad se refiere la siguiente descripción: Capacidad de estirarse, dentro de ciertos límites, sin ser dañado. Extensibilidad Elasticidad Excitabilidad eléctrica Hematopoyesis Contractilidad Teniendo en cuenta las propiedades de los músculos, seleccione a cuál propiedad se refiere la siguiente descripción: Capacidad de recuperar su longitud y forma originales después de la contracción o la extensión. Elasticidad Inmunológica Excitabilidad eléctrica Contractilidad Extensibilidad De las siguientes opciones, determine las que sean funciones generales de los músculos y seleccione la respuesta que se ajuste a su criterio:", "items": ["1- Inmunológica.", "2- Producir movimientos corporales.", "3- Participan en la coagulación de la sangre.", "4- Generar calor.", "5- Estabilizar la posición del cuerpo."], "options": ["2, 4 y 5", "1, 2 y 3", "3, 4 y 5", "1, 3 y 5", "1, 2 y 4"], "correct": "2, 4 y 5", "explanation": "Extensión: Incrementa o abre el ángulo entre los huesos articulares.", "mnemonic": ""}, {"id": 118, "topic": "Sistema Muscular (Miología)", "type": "multiple_selection", "question": "De las siguientes opciones, determine las que sean funciones generales de los músculos y seleccione la respuesta que se ajuste a su criterio:", "items": ["1- Almacenar y movilizar sustancias dentro del cuerpo.", "2- Síntesis de vitamina D.", "3- Estabilizar la posición del cuerpo.", "4- Participar en la hematosis.", "5- Generar calor."], "options": ["1, 3 y 5", "1, 2 y 3", "3, 4 y 5", "2, 3 y 4", "1, 2 y 4"], "correct": "1, 3 y 5", "explanation": "Respuesta correcta oficial validada para Morfofisiología I.", "mnemonic": ""}, {"id": 119, "topic": "Sistema Muscular (Miología)", "type": "multiple_selection", "question": "De las siguientes opciones, determine las que sean músculos de la cara y seleccione la respuesta que se ajuste a su criterio:", "items": ["1- Músculo buccinador.", "2- Músculo esternocleidomastoideo.", "3- Músculo masetero.", "4- Músculo esplenio.", "5- Músculo orbicular de los párpados."], "options": ["1, 3 y 5", "1, 2 y 3", "3, 4 y 5", "2, 4 y 5", "1, 2 y 4"], "correct": "1, 3 y 5", "explanation": "Respuesta correcta oficial validada para Morfofisiología I.", "mnemonic": ""}, {"id": 120, "topic": "Sistema Muscular (Miología)", "type": "multiple_selection", "question": "De las siguientes opciones, determine las que sean músculos de la cara y seleccione la respuesta que se ajuste a su criterio:", "items": ["1- Músculo orbicular de los labios.", "2- Músculo risorio de Santorini.", "3- Músculo frontal.", "4- Músculo temporal.", "5- Músculo buccinador."], "options": ["1, 2 y 5", "1, 2 y 3", "3, 4 y 5", "2, 4 y 5", "1, 2 y 4"], "correct": "1, 2 y 5", "explanation": "Respuesta correcta oficial validada para Morfofisiología I.", "mnemonic": ""}, {"id": 121, "topic": "Sistema Muscular (Miología)", "type": "multiple_selection", "question": "De las siguientes opciones, determine las que sean músculos de la masticación y seleccione la respuesta que se ajuste a su criterio:", "items": ["1- Músculo temporal.", "2- Músculo buccinador.", "3- Músculos pterigoides medial.", "4- Músculo masetero.", "5- Músculo frontal."], "options": ["1, 3 y 4", "1, 2 y 3", "3, 4 y 5", "2, 4 y 5", "1, 2 y 4"], "correct": "1, 3 y 4", "explanation": "Respuesta correcta oficial validada para Morfofisiología I.", "mnemonic": ""}, {"id": 122, "topic": "Sistema Muscular (Miología)", "type": "multiple_selection", "question": "De las siguientes opciones, determine las que sean músculos de la masticación y seleccione la respuesta que se ajuste a su criterio:", "items": ["1- Músculo esternocleidomastoideo.", "2- Músculo pterigoides lateral.", "3- Músculo diafragma.", "4- Músculo temporal.", "5- Músculo masetero."], "options": ["2, 4 y 5", "1, 2 y 3", "3, 4 y 5", "1, 3 y 5", "1, 2 y 4"], "correct": "2, 4 y 5", "explanation": "Respuesta correcta oficial validada para Morfofisiología I.", "mnemonic": ""}, {"id": 123, "topic": "Sistema Muscular (Miología)", "type": "multiple_selection", "question": "De las siguientes opciones, determine las que sean músculos torácicos anteriores y seleccione la respuesta que se ajuste a su criterio:", "items": ["1- Músculo bíceps braquial.", "2- Músculo pectoral mayor.", "3- Músculo serrato anterior.", "4- Músculos intercostales internos.", "5- Músculo recto anterior."], "options": ["2, 3 y 4", "1, 2 y 3", "3, 4 y 5", "2, 4 y 5", "1, 2 y 4"], "correct": "2, 3 y 4", "explanation": "Respuesta correcta oficial validada para Morfofisiología I.", "mnemonic": ""}, {"id": 124, "topic": "Sistema Muscular (Miología)", "type": "multiple_selection", "question": "De las siguientes opciones, determine las que sean músculos torácicos posteriores y seleccione la respuesta que se ajuste a su criterio:", "items": ["1- Músculo trapecio.", "2- Músculo pectoral menor.", "3- Músculo romboide mayor.", "4- Músculo transverso.", "5- Músculo dorsal ancho."], "options": ["1, 3 y 5", "1, 2 y 3", "3, 4 y 5", "2, 4 y 5", "1, 2 y 4"], "correct": "1, 3 y 5", "explanation": "Respuesta correcta oficial validada para Morfofisiología I.", "mnemonic": ""}, {"id": 125, "topic": "Cavidades y Topografía Abdominal", "type": "multiple_selection", "question": "De las siguientes opciones, determine las que sean músculos del abdomen y seleccione la respuesta que se ajuste a su criterio:", "items": ["1- Músculo pectoral menor.", "2- Músculo oblicuo externo.", "3- Músculo recto anterior.", "4- Músculo transverso.", "5- Músculos intercostales externos."], "options": ["2, 3 y 4", "1, 2 y 3", "3, 4 y 5", "2, 4 y 5", "1, 3 y 5"], "correct": "2, 3 y 4", "explanation": "Respuesta correcta oficial validada para Morfofisiología I.", "mnemonic": ""}, {"id": 126, "topic": "Sistema Muscular (Miología)", "type": "multiple_selection", "question": "De las siguientes opciones, determine las que sean músculos que participan en la respiración y seleccione la respuesta que se ajuste a su criterio:", "items": ["1- Músculo diafragma.", "2- Músculo buccinador.", "3- Músculos intercostales externos.", "4- Músculo oblicuo externo.", "5- Músculo esplenio."], "options": ["1, 3 y 4", "1, 2 y 3", "3, 4 y 5", "2, 4 y 5", "1, 2 y 4"], "correct": "1, 3 y 4", "explanation": "Respuesta correcta oficial validada para Morfofisiología I.", "mnemonic": ""}, {"id": 127, "topic": "Sistema Muscular (Miología)", "type": "multiple_selection", "question": "De las siguientes opciones, determine las que sean músculos que participan en la respiración y seleccione la respuesta que se ajuste a su criterio:", "items": ["1- Músculo dorsal ancho.", "2- Músculos intercostales internos.", "3- Músculo masetero.", "4- Músculo pectoral menor.", "5- Músculo diafragma."], "options": ["2, 4 y 5", "1, 2 y 3", "3, 4 y 5", "2, 3 y 5", "1, 2 y 4"], "correct": "2, 4 y 5", "explanation": "Respuesta correcta oficial validada para Morfofisiología I.", "mnemonic": ""}, {"id": 128, "topic": "Sistema Muscular (Miología)", "type": "multiple_selection", "question": "De las siguientes opciones, determine las que sean músculos del miembro superior y seleccione la respuesta que se ajuste a su criterio:", "items": ["1- Músculo tríceps braquial.", "2- Músculo esternocleidomastoideo.", "3- Músculo braquiorradial.", "4- Músculo peroneo largo.", "5- Músculo flexor cubital del carpo."], "options": ["1, 3 y 5", "1, 2 y 3", "3, 4 y 5", "2, 4 y 5", "1, 2 y 4"], "correct": "1, 3 y 5", "explanation": "Respuesta correcta oficial validada para Morfofisiología I.", "mnemonic": ""}, {"id": 129, "topic": "Sistema Muscular (Miología)", "type": "multiple_selection", "question": "De las siguientes opciones, determine las que sean músculos de los miembros superiores y seleccione la respuesta que se ajuste a su criterio:", "items": ["1- Músculo esternocleidomastoideo.", "2- Músculo extensor de los dedos.", "3- Músculos bíceps femoral.", "4- Músculo extensor radial largo del carpo.", "5- Músculo bíceps braquial."], "options": ["2, 4 y 5", "1, 2 y 3", "3, 4 y 5", "1, 3 y 5", "1, 2 y 4"], "correct": "2, 4 y 5", "explanation": "Respuesta correcta oficial validada para Morfofisiología I.", "mnemonic": ""}, {"id": 130, "topic": "Sistema Muscular (Miología)", "type": "multiple_selection", "question": "De las siguientes opciones, determine las que sean músculos del miembro superior y seleccione la respuesta que se ajuste a su criterio:", "items": ["1- Músculo bíceps braquial.", "2- Músculo extensor radial del carpo.", "3- Músculo tríceps sural.", "4- Músculo temporal.", "5- Músculo deltoides."], "options": ["1, 2 y 5", "1, 2 y 3", "3, 4 y 5", "2, 4 y 5", "1, 2 y 4"], "correct": "1, 2 y 5", "explanation": "Respuesta correcta oficial validada para Morfofisiología I.", "mnemonic": ""}, {"id": 131, "topic": "Sistema Muscular (Miología)", "type": "multiple_selection", "question": "De las siguientes opciones, determine las que sean músculos del miembro inferior y seleccione la respuesta que se ajuste a su criterio:", "items": ["1- Músculo recto anterior.", "2- Músculo tríceps sural.", "3- Músculo tibial anterior.", "4- Músculo sartorio.", "5- Músculo tríceps braquial."], "options": ["2, 3 y 4", "1, 2 y 3", "3, 4 y 5", "2, 4 y 5", "1, 2 y 4"], "correct": "2, 3 y 4", "explanation": "Respuesta correcta oficial validada para Morfofisiología I.", "mnemonic": ""}, {"id": 132, "topic": "Sistema Muscular (Miología)", "type": "multiple_selection", "question": "De las siguientes opciones, determine las que sean músculos del miembro inferior y seleccione la respuesta que se ajuste a su criterio:", "items": ["1- Músculo glúteo menor.", "2- Músculo semitendinoso.", "3- Músculo cuádriceps femoral.", "4- Músculo bíceps braquial.", "5- Músculo bíceps femoral."], "options": ["1, 3 y 5", "1, 2 y 3", "3, 4 y 5", "2, 4 y 5", "1, 2 y 4"], "correct": "1, 3 y 5", "explanation": "Respuesta correcta oficial validada para Morfofisiología I.", "mnemonic": ""}, {"id": 133, "topic": "Sistema Muscular (Miología)", "type": "multiple_selection", "question": "De las siguientes opciones, determine las que sean músculos del miembro inferior y seleccione la respuesta que se ajuste a su criterio:", "items": ["1- Músculo dorsal ancho.", "2- Músculo semimembranoso.", "3- Músculo glúteo mayor.", "4- Músculo tibial anterior.", "5- Músculo extensor radial corto del carpo."], "options": ["2, 3 y 4", "1, 2 y 3", "3, 4 y 5", "1, 3 y 5", "1, 2 y 4"], "correct": "2, 3 y 4", "explanation": "Respuesta correcta oficial validada para Morfofisiología I.", "mnemonic": ""}, {"id": 134, "topic": "Sistema Muscular (Miología)", "type": "multiple_selection", "question": "De las siguientes opciones, determine las que sean músculos del miembro inferior y seleccione la respuesta que se ajuste a su criterio:", "items": ["1- Músculo sartorio.", "2- Músculo braquiorradial.", "3- Músculo romboide mayor.", "4- Músculo tríceps sural.", "5- Músculo glúteo menor."], "options": ["1, 4 y 5", "1, 2 y 3", "3, 4 y 5", "2, 3 y 5", "1, 2 y 4"], "correct": "1, 4 y 5", "explanation": "Respuesta correcta oficial validada para Morfofisiología I.", "mnemonic": ""}, {"id": 135, "topic": "Sistema Tegumentario y Receptores", "type": "true_false", "question": "Teniendo en cuenta lo aprendido sobre el sistema tegumentario, responda si es Verdadero o Falso el siguiente enunciado: La piel es el órgano más grande del cuerpo humano.", "items": [], "options": ["Verdadero", "Falso"], "correct": "Verdadero", "explanation": "Respuesta correcta oficial validada para Morfofisiología I.", "mnemonic": ""}, {"id": 136, "topic": "Sistema Tegumentario y Receptores", "type": "true_false", "question": "Teniendo en cuenta lo aprendido sobre el sistema tegumentario, responda si es Verdadero o Falso el siguiente enunciado: La hipodermis es la capa más superficial de la piel.", "items": [], "options": ["Verdadero", "Falso"], "correct": "Verdadero", "explanation": "Respuesta correcta oficial validada para Morfofisiología I.", "mnemonic": ""}, {"id": 137, "topic": "Sistema Tegumentario y Receptores", "type": "true_false", "question": "Teniendo en cuenta lo aprendido sobre el sistema tegumentario, responda si es Verdadero o Falso el siguiente enunciado: El sistema tegumentario ayuda a mantener una temperatura corporal constante.", "items": [], "options": ["Verdadero", "Falso"], "correct": "Verdadero", "explanation": "Respuesta correcta oficial validada para Morfofisiología I.", "mnemonic": ""}, {"id": 138, "topic": "Sistema Tegumentario y Receptores", "type": "true_false", "question": "Teniendo en cuenta lo aprendido sobre el sistema tegumentario, responda si es Verdadero o Falso el siguiente enunciado: La dermis es la capa más superficial de la piel.", "items": [], "options": ["Verdadero", "Falso"], "correct": "Verdadero", "explanation": "Respuesta correcta oficial validada para Morfofisiología I.", "mnemonic": ""}, {"id": 139, "topic": "Sistema Tegumentario y Receptores", "type": "true_false", "question": "Teniendo en cuenta lo aprendido sobre el sistema tegumentario, responda si es Verdadero o Falso el siguiente enunciado: El sistema tegumentario solo está constituido por la piel, el pelo y las uñas.", "items": [], "options": ["Verdadero", "Falso"], "correct": "Verdadero", "explanation": "Respuesta correcta oficial validada para Morfofisiología I.", "mnemonic": ""}, {"id": 140, "topic": "Sistema Tegumentario y Receptores", "type": "true_false", "question": "Teniendo en cuenta lo aprendido sobre las capas de la piel, responda si es Verdadero o Falso el siguiente enunciado: La epidermis está compuesta por epitelio queratinizado.", "items": [], "options": ["Verdadero", "Falso"], "correct": "Verdadero", "explanation": "Respuesta correcta oficial validada para Morfofisiología I.", "mnemonic": ""}, {"id": 141, "topic": "Biología Celular y Tejidos", "type": "true_false", "question": "Teniendo en cuenta lo aprendido sobre las capas de la piel, responda si es Verdadero o Falso el siguiente enunciado: La dermis está formada, sobre todo, por tejido conectivo denso irregular, con colágeno y fibras elásticas.", "items": [], "options": ["Verdadero", "Falso"], "correct": "Verdadero", "explanation": "Respuesta correcta oficial validada para Morfofisiología I.", "mnemonic": ""}, {"id": 142, "topic": "Sistema Tegumentario y Receptores", "type": "true_false", "question": "Teniendo en cuenta lo aprendido sobre las capas de la piel, responda si es Verdadero o Falso el siguiente enunciado: La piel está formada por tres capas: epidermis, dermis e hipodermis.", "items": [], "options": ["Verdadero", "Falso"], "correct": "Verdadero", "explanation": "Respuesta correcta oficial validada para Morfofisiología I.", "mnemonic": ""}, {"id": 143, "topic": "Sistema Tegumentario y Receptores", "type": "true_false", "question": "Teniendo en cuenta lo aprendido sobre las capas de la piel, responda si es Verdadero o Falso el siguiente enunciado: La queratina ayuda a proteger la piel de las abrasiones, el calor, los microorganismos y los compuestos químicos.", "items": [], "options": ["Verdadero", "Falso"], "correct": "Verdadero", "explanation": "Respuesta correcta oficial validada para Morfofisiología I.", "mnemonic": ""}, {"id": 144, "topic": "Sistema Tegumentario y Receptores", "type": "true_false", "question": "Teniendo en cuenta lo aprendido sobre las capas de la piel, responda si es Verdadero o Falso el siguiente enunciado: La melanina absorbe los rayos ultravioletas nocivos para la piel.", "items": [], "options": ["Verdadero", "Falso"], "correct": "Verdadero", "explanation": "Respuesta correcta oficial validada para Morfofisiología I.", "mnemonic": ""}, {"id": 145, "topic": "Sistema Tegumentario y Receptores", "type": "true_false", "question": "Teniendo en cuenta lo aprendido sobre los receptores cutáneos, responda si es Verdadero o Falso el siguiente enunciado: La presión y las vibraciones son sensaciones somáticas táctiles.", "items": [], "options": ["Verdadero", "Falso"], "correct": "Verdadero", "explanation": "Respuesta correcta oficial validada para Morfofisiología I.", "mnemonic": ""}, {"id": 146, "topic": "Sistema Tegumentario y Receptores", "type": "true_false", "question": "Teniendo en cuenta lo aprendido sobre los receptores cutáneos, responda si es Verdadero o Falso el siguiente enunciado: La sensación al calor y al frío son generados por termorreceptores.", "items": [], "options": ["Verdadero", "Falso"], "correct": "Verdadero", "explanation": "Respuesta correcta oficial validada para Morfofisiología I.", "mnemonic": ""}, {"id": 147, "topic": "Biología Celular y Tejidos", "type": "true_false", "question": "Teniendo en cuenta lo aprendido sobre los receptores cutáneos, responda si es Verdadero o Falso el siguiente enunciado: Los mecanorreceptores responden a estímulos dolorosos causados por daño físico o químico de los tejidos.", "items": [], "options": ["Verdadero", "Falso"], "correct": "Verdadero", "explanation": "Respuesta correcta oficial validada para Morfofisiología I.", "mnemonic": ""}, {"id": 148, "topic": "Sistema Tegumentario y Receptores", "type": "true_false", "question": "Teniendo en cuenta lo aprendido sobre el sistema tegumentario, responda si es Verdadero o Falso el siguiente enunciado: Las glándulas sudoríparas son unos de los anexos de la piel.", "items": [], "options": ["Verdadero", "Falso"], "correct": "Verdadero", "explanation": "Respuesta correcta oficial validada para Morfofisiología I.", "mnemonic": ""}, {"id": 149, "topic": "Sistema Tegumentario y Receptores", "type": "true_false", "question": "Teniendo en cuenta lo aprendido sobre el sistema tegumentario, responda si es Verdadero o Falso el siguiente enunciado: La mayor cantidad de glándulas sebáceas se encuentran en las palmas de las manos.", "items": [], "options": ["Verdadero", "Falso"], "correct": "Verdadero", "explanation": "Respuesta correcta oficial validada para Morfofisiología I.", "mnemonic": ""}, {"id": 150, "topic": "Sistema Tegumentario y Receptores", "type": "true_false", "question": "Teniendo en cuenta lo aprendido sobre el sistema tegumentario, responda si es Verdadero o Falso el siguiente enunciado: Existen glándulas sudoríparas que desembocan directamente en la superficie de la piel y otras lo hacen hacia el folículo piloso.", "items": [], "options": ["Verdadero", "Falso"], "correct": "Verdadero", "explanation": "Respuesta correcta oficial validada para Morfofisiología I.", "mnemonic": ""}, {"id": 151, "topic": "Sistema Tegumentario y Receptores", "type": "multiple_choice", "question": "La porción del pelo que se proyecta sobre la superficie de la piel, se denomina:", "items": [], "options": ["Tallo piloso", "Raíz pilosa", "Folículo piloso", "Bulbo piloso", "Matriz ungueal"], "correct": "Tallo piloso", "explanation": "Respuesta correcta oficial validada para Morfofisiología I.", "mnemonic": ""}, {"id": 152, "topic": "Generalidades y Planimetría", "type": "multiple_choice", "question": "La base del folículo piloso, que contiene la papila pilosa y la matriz, se denomina:", "items": [], "options": ["Bulbo piloso", "Raíz pilosa", "Folículo piloso", "Tallo piloso", "Placa ungueal"], "correct": "Bulbo piloso", "explanation": "Respuesta correcta oficial validada para Morfofisiología I.", "mnemonic": ""}, {"id": 153, "topic": "Sistema Tegumentario y Receptores", "type": "multiple_selection", "question": "De las siguientes opciones, determine las que sean funciones del sistema tegumentario y seleccione la respuesta que se ajuste a su criterio:", "items": ["1- Transporte de gases.", "2- Protección.", "3- Síntesis de vitamina D.", "4- Termorregulación.", "5- Inmunológica."], "options": ["2, 3 y 4", "1, 2 y 3", "3, 4 y 5", "2, 4 y 5", "1, 3 y 5"], "correct": "2, 3 y 4", "explanation": "Respuesta correcta oficial validada para Morfofisiología I.", "mnemonic": ""}, {"id": 154, "topic": "Sistema Tegumentario y Receptores", "type": "multiple_selection", "question": "De las siguientes opciones, determine las que sean funciones del sistema tegumentario y seleccione la respuesta que se ajuste a su criterio:", "items": ["1- Sensibilidad cutánea.", "2- Producir movimientos corporales.", "3- Excreción y absorción.", "4- Hematosis.", "5- Protección."], "options": ["1, 3 y 5", "1, 2 y 3", "3, 4 y 5", "2, 4 y 5", "1, 2 y 4"], "correct": "1, 3 y 5", "explanation": "Respuesta correcta oficial validada para Morfofisiología I.", "mnemonic": ""}];
-    const GAME_PAIRS = [{"term": "Osteoblastos 🦴", "match": "Construyen hueso nuevo (Builder)"}, {"term": "Osteoclastos 🦴", "match": "Degradan y reabsorben hueso viejo"}, {"term": "Osteocitos 🦴", "match": "Células maduras de mantenimiento óseo"}, {"term": "Meissner ✋", "match": "Tacto fino y discriminativo (yemas)"}, {"term": "Krause ❄️", "match": "Receptor sensible al frío (Kold)"}, {"term": "Pácini ⚡", "match": "Presión profunda y vibración rápida"}, {"term": "Ruffini 🔥", "match": "Calor y estiramiento tisular"}, {"term": "Merkel 👆", "match": "Tacto sostenido, presión y textura"}, {"term": "Plano Frontal 📐", "match": "Divide en Anterior y Posterior"}, {"term": "Plano Sagital 📐", "match": "Divide en Lados Derecho e Izquierdo"}, {"term": "Plano Transversal 📐", "match": "Divide en Superior e Inferior"}, {"term": "Plano Oblicuo 📐", "match": "Atraviesa en ángulo distinto de 90°"}, {"term": "Abducción (ABD) 🤸‍♀️", "match": "Aleja la estructura de la línea media"}, {"term": "Aducción (ADD) 🤸‍♀️", "match": "Acerca o añade a la línea media"}, {"term": "Flexión 🤸‍♀️", "match": "Disminuye el ángulo articular"}, {"term": "Extensión 🤸‍♀️", "match": "Incrementa o abre el ángulo articular"}, {"term": "Posición Fowler 🛏️", "match": "Semisentado a 45° (respiratorio)"}, {"term": "Trendelenburg 🛏️", "match": "Cabeza más baja que pies a 45°"}, {"term": "Sinartrosis 🔗", "match": "Articulaciones inmóviles (suturas)"}, {"term": "Diartrosis 🔗", "match": "Articulaciones de gran movilidad (sinoviales)"}, {"term": "Anfiartrosis 🔗", "match": "Articulaciones semimóviles (sínfisis)"}, {"term": "Sarcómero 💪", "match": "Unidad funcional contráctil del músculo"}, {"term": "Tejido Epitelial 🔬", "match": "Tapiza cavidades y reviste órganos"}, {"term": "Epífisis 🦴", "match": "Extremos de los huesos largos"}, {"term": "Diáfisis 🦴", "match": "Cuerpo central de los huesos largos"}, {"term": "Fontanela Anterior 👶", "match": "Unión de huesos parietales y frontal"}, {"term": "Fontanela Posterior 👶", "match": "Unión de huesos parietales y occipital"}];
-    
-    // Voice feedback phrases
-    const PRAISE_PHRASES = [
-      "¡Excelente respuesta!",
-      "¡Perfecto! Dominas muy bien la morfofisiología.",
-      "¡Brillante! Respuesta correcta.",
-      "¡Eso es! Muy bien razonado.",
-      "¡Extraordinario! Sigue con ese ritmo.",
-      "¡Muy bien! Estás aprendiendo rápido.",
-      "¡Correcto! Eres una futura gran terapeuta física."
-    ];
 
-    const ENCOURAGE_PHRASES = [
-      "¡Ánimo, tú puedes! Revisa la explicación.",
-      "¡No pasa nada! De los errores se aprende más rápido.",
-      "¡Vuelve a intentarlo! Lee con calma la clave.",
-      "¡Casi lo tienes! Concéntrate en la función anatómica.",
-      "¡Sigue adelante! Cada pregunta te acerca al 10."
-    ];
-
-    // Load active profile or default
+    // ==================== GLOBAL APP STATE ====================
     let allProfiles = {};
     try {
-      allProfiles = JSON.parse(localStorage.getItem('morfo_all_profiles') || '{}');
-    } catch(e) {}
+      allProfiles = JSON.parse(localStorage.getItem('morfo_all_profiles')) || {};
+    } catch(e) { allProfiles = {}; }
 
     let activeUserKey = localStorage.getItem('morfo_active_user') || '';
     let state = (activeUserKey && allProfiles[activeUserKey]) ? allProfiles[activeUserKey] : {
@@ -781,12 +753,12 @@
       voice: true
     };
 
-    // Voice Synthesis Helpers
-    let voiceSynth = window.speechSynthesis || null;
+    // ==================== VOICE SYNTHESIS TUTOR ====================
+    let voiceSynth = window.speechSynthesis;
     let selectedVoice = null;
 
-    function initVoices() {
-      if (!voiceSynth) return;
+    function initVoice() {
+      if (!('speechSynthesis' in window)) return;
       function populate() {
         const voices = voiceSynth.getVoices();
         selectedVoice = voices.find(v => v.lang.startsWith('es') && (v.name.includes('Google') || v.name.includes('Natural') || v.name.includes('Sabina') || v.name.includes('Helena') || v.name.includes('Mónica') || v.name.includes('Paulina'))) 
@@ -1075,12 +1047,19 @@
         const bbtn = document.getElementById('btab-' + t);
         if (bbtn) {
           if (t === tab) {
-            bbtn.className = "flex flex-col items-center justify-center flex-1 py-1 text-brand-600 dark:text-brand-400 font-extrabold text-[10px] min-w-[50px] transition scale-105";
+            bbtn.className = "flex flex-col items-center justify-center flex-1 py-1 text-brand-600 dark:text-brand-400 font-extrabold text-[10px] min-w-[48px] transition scale-105";
           } else {
-            bbtn.className = "flex flex-col items-center justify-center flex-1 py-1 text-slate-500 dark:text-slate-400 font-bold text-[10px] min-w-[50px] transition";
+            bbtn.className = "flex flex-col items-center justify-center flex-1 py-1 text-slate-500 dark:text-slate-400 font-bold text-[10px] min-w-[48px] transition";
           }
         }
       });
+
+      // Show action dock only when in practice tab
+      const practiceDock = document.getElementById('practice-action-dock');
+      if (practiceDock) {
+        if (tab === 'practice') practiceDock.classList.remove('hidden');
+        else practiceDock.classList.add('hidden');
+      }
 
       if (tab === 'game') initMemoryGame();
       else if (tab === 'bank') renderBank();
@@ -1109,7 +1088,6 @@
       }
 
       practiceIdx = 0;
-      practiceSessionAnswered = {};
       renderPractice();
       playAudio('click');
     }
@@ -1119,134 +1097,164 @@
       const q = practiceList[practiceIdx];
       if (!q) return;
 
-      if (!q._shuffled) {
-        q._shuffled = [...q.options].sort(() => Math.random() - 0.5);
-      }
-
+      setElText('practice-counter-text', `${practiceIdx + 1} de ${practiceList.length}`);
       setElText('practice-q-badge', `Pregunta #${q.id}`);
       setElText('practice-q-topic', q.topic);
-      setElText('practice-counter-text', `${practiceIdx + 1} de ${practiceList.length}`);
       setElText('practice-q-title', q.question);
 
-      const itemsContainer = document.getElementById('practice-q-items');
-      if (itemsContainer) {
+      const itemsBox = document.getElementById('practice-q-items');
+      if (itemsBox) {
         if (q.items && q.items.length) {
-          itemsContainer.classList.remove('hidden');
-          itemsContainer.innerHTML = q.items.map(it => `<div>• ${it}</div>`).join('');
+          itemsBox.classList.remove('hidden');
+          itemsBox.innerHTML = q.items.map(it => `<div>• ${it}</div>`).join('');
         } else {
-          itemsContainer.classList.add('hidden');
+          itemsBox.classList.add('hidden');
         }
       }
 
+      // Star button
       const isStarred = (state.starred || []).includes(q.id);
       const starBtn = document.getElementById('btn-star');
       if (starBtn) {
         starBtn.textContent = isStarred ? '★' : '☆';
         starBtn.className = isStarred 
-          ? "w-7 h-7 sm:w-8 sm:h-8 rounded-xl border border-amber-500/40 bg-amber-500/10 text-amber-500 flex items-center justify-center text-sm transition"
+          ? "w-7 h-7 sm:w-8 sm:h-8 rounded-xl border border-amber-500/50 bg-amber-500/20 text-amber-400 flex items-center justify-center text-sm transition"
           : "w-7 h-7 sm:w-8 sm:h-8 rounded-xl border border-slate-200 dark:border-darkborder hover:bg-slate-100 dark:hover:bg-darksurface flex items-center justify-center text-sm transition";
       }
 
-      const answeredOption = practiceSessionAnswered[q.id];
-      const optionsGrid = document.getElementById('practice-options-container');
-      const optionLetters = ['A', 'B', 'C', 'D', 'E'];
-      if (optionsGrid) {
-        optionsGrid.innerHTML = q._shuffled.map((opt, i) => {
-          let btnClass = "option-btn w-full text-left p-2.5 sm:p-3 rounded-xl sm:rounded-2xl border text-xs sm:text-sm font-semibold flex items-start gap-2 sm:gap-2.5 transition ";
-          let numBadge = `<span class="w-5 h-5 rounded-lg bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-300 text-[10px] font-bold flex items-center justify-center flex-shrink-0 mt-0.5">${optionLetters[i] || (i+1)}</span>`;
+      // Options
+      const container = document.getElementById('practice-options-container');
+      if (container) {
+        const letters = ['A', 'B', 'C', 'D', 'E'];
+        const ans = practiceSessionAnswered[q.id];
 
-          if (answeredOption === undefined) {
-            btnClass += "bg-white dark:bg-darksurface border-slate-200 dark:border-darkborder text-slate-800 dark:text-white hover:border-brand-500 hover:bg-brand-50/40 dark:hover:bg-brand-950/30 cursor-pointer shadow-sm";
+        container.innerHTML = q.options.map((opt, i) => {
+          const letter = letters[i] || (i+1);
+          let btnClass = "option-btn w-full p-2.5 sm:p-3.5 rounded-2xl border text-left flex items-start gap-2.5 transition text-xs sm:text-sm font-semibold ";
+
+          if (!ans) {
+            btnClass += "border-slate-200 dark:border-darkborder bg-white dark:bg-darksurface text-slate-800 dark:text-slate-100 hover:border-brand-500 hover:bg-brand-500/5 shadow-sm";
           } else {
             if (opt === q.correct) {
-              btnClass += "bg-emerald-500/15 border-emerald-500 text-emerald-700 dark:text-emerald-300 font-bold shadow-md ring-1 ring-emerald-500";
-              numBadge = `<span class="w-5 h-5 rounded-lg bg-emerald-500 text-white text-[10px] font-bold flex items-center justify-center flex-shrink-0 mt-0.5">✓</span>`;
-            } else if (opt === answeredOption) {
-              btnClass += "bg-rose-500/15 border-rose-500 text-rose-700 dark:text-rose-300 font-bold";
-              numBadge = `<span class="w-5 h-5 rounded-lg bg-rose-500 text-white text-[10px] font-bold flex items-center justify-center flex-shrink-0 mt-0.5">✗</span>`;
+              btnClass += "border-emerald-500 bg-emerald-500/15 text-emerald-600 dark:text-emerald-400 font-bold shadow-md";
+            } else if (opt === ans.selected) {
+              btnClass += "border-rose-500 bg-rose-500/15 text-rose-600 dark:text-rose-400 font-bold";
             } else {
-              btnClass += "bg-slate-50 dark:bg-darksurface/40 border-slate-200 dark:border-darkborder/50 text-slate-400 opacity-50";
+              btnClass += "border-slate-200 dark:border-darkborder bg-slate-100/50 dark:bg-darksurface/30 text-slate-400 opacity-60";
             }
           }
 
           return `
-            <button onclick="answerPractice('${opt.replace(/'/g, "\'")}')" ${answeredOption !== undefined ? 'disabled' : ''} class="${btnClass}">
-              ${numBadge}
-              <span class="flex-1 leading-snug break-words">${opt}</span>
+            <button onclick="handlePracticeSelect('${opt.replace(/'/g, "\'")}')" ${ans ? 'disabled' : ''} class="${btnClass}">
+              <span class="w-6 h-6 rounded-lg bg-slate-200 dark:bg-slate-700/80 flex items-center justify-center font-bold text-xs flex-shrink-0 text-slate-700 dark:text-slate-200">
+                ${letter}
+              </span>
+              <span class="flex-1">${opt}</span>
             </button>
           `;
         }).join('');
       }
 
+      // Feedback Box
       const fbBox = document.getElementById('practice-feedback-box');
       if (fbBox) {
-        if (answeredOption !== undefined) {
+        const ans = practiceSessionAnswered[q.id];
+        if (ans) {
           fbBox.classList.remove('hidden');
-          const isOk = answeredOption === q.correct;
-          fbBox.className = isOk 
-            ? "p-2.5 sm:p-3 rounded-xl border bg-emerald-500/10 border-emerald-500/30 text-emerald-800 dark:text-emerald-300 text-xs sm:text-sm leading-relaxed"
-            : "p-2.5 sm:p-3 rounded-xl border bg-rose-500/10 border-rose-500/30 text-rose-800 dark:text-rose-300 text-xs sm:text-sm leading-relaxed";
-          
-          fbBox.innerHTML = `
-            <div class="font-extrabold flex items-center justify-between mb-1">
-              <span>${isOk ? '🎉 ¡Respuesta Correcta!' : '❌ Respuesta Incorrecta'}</span>
-              <span class="text-[11px] font-normal text-slate-400">Oficial #BANCO</span>
-            </div>
-            <div class="font-medium text-slate-700 dark:text-slate-200 mb-1"><strong>Clave:</strong> ${q.correct}</div>
-            <div class="text-[11px] sm:text-xs text-slate-600 dark:text-slate-300 italic mb-1">${q.explanation}</div>
-            ${q.mnemonic ? `<div class="mt-1 text-[11px] text-amber-500 bg-amber-500/10 p-1.5 rounded-lg font-semibold">💡 Mnemotecnia: ${q.mnemonic}</div>` : ''}
-          `;
+          if (ans.isCorrect) {
+            fbBox.className = "p-2.5 sm:p-3 rounded-xl border border-emerald-500/40 bg-emerald-500/10 text-emerald-800 dark:text-emerald-300 text-xs sm:text-sm leading-relaxed space-y-1 shadow-sm";
+            fbBox.innerHTML = `
+              <div class="font-extrabold flex items-center gap-1.5 text-emerald-600 dark:text-emerald-400">
+                <span>🎉 ¡Excelente, respuesta correcta!</span>
+                <span class="text-xs font-bold px-2 py-0.5 rounded-full bg-emerald-500/20">+15 XP</span>
+              </div>
+              <div>${q.explanation || 'Respuesta validada.'}</div>
+              ${q.mnemonic ? `<div class="mt-1 text-amber-500 font-bold text-xs bg-amber-500/10 p-1.5 rounded-lg">${q.mnemonic}</div>` : ''}
+            `;
+          } else {
+            fbBox.className = "p-2.5 sm:p-3 rounded-xl border border-rose-500/40 bg-rose-500/10 text-rose-800 dark:text-rose-300 text-xs sm:text-sm leading-relaxed space-y-1 shadow-sm";
+            fbBox.innerHTML = `
+              <div class="font-extrabold flex items-center gap-1 text-rose-600 dark:text-rose-400">
+                <span>❌ Incorrecto.</span>
+                <span class="font-normal text-xs text-slate-600 dark:text-slate-300">La opción correcta es: <strong>${q.correct}</strong></span>
+              </div>
+              <div class="text-slate-700 dark:text-slate-300">${q.explanation || ''}</div>
+              ${q.mnemonic ? `<div class="mt-1 text-amber-500 font-bold text-xs bg-amber-500/10 p-1.5 rounded-lg">${q.mnemonic}</div>` : ''}
+            `;
+          }
         } else {
           fbBox.classList.add('hidden');
         }
       }
 
-      updateStatsDisplay();
-      
+      // Prev/Next Button states
       const prevBtn = document.getElementById('btn-practice-prev');
       const nextBtn = document.getElementById('btn-practice-next');
-      if (prevBtn) prevBtn.disabled = practiceIdx === 0;
-      if (nextBtn) nextBtn.disabled = practiceIdx === practiceList.length - 1;
+      if (prevBtn) prevBtn.disabled = (practiceIdx === 0);
+      if (nextBtn) nextBtn.disabled = (practiceIdx === practiceList.length - 1);
     }
 
-    function answerPractice(chosenOpt) {
+    function handlePracticeSelect(selectedOpt) {
       const q = practiceList[practiceIdx];
-      if (!q || practiceSessionAnswered[q.id] !== undefined) return;
+      if (!q) return;
 
-      practiceSessionAnswered[q.id] = chosenOpt;
-      const isCorrect = chosenOpt === q.correct;
-
-      state.answered = state.answered || {};
-      state.answered[q.id] = isCorrect;
+      const isCorrect = (selectedOpt === q.correct);
+      practiceSessionAnswered[q.id] = { selected: selectedOpt, isCorrect };
 
       if (isCorrect) {
         state.streak = (state.streak || 0) + 1;
-        addXP(20);
+        addXP(15);
         playAudio('correct');
-        
-        const phrase = PRAISE_PHRASES[Math.floor(Math.random() * PRAISE_PHRASES.length)];
-        speakText(phrase);
 
-        if (state.streak % 3 === 0) confetti({ particleCount: 40, spread: 50 });
+        // Voice Praise
+        const praises = [
+          "¡Muy bien!", 
+          "¡Excelente respuesta!", 
+          "¡Correcto, sigue así!", 
+          "¡Brillante deducción clínica!", 
+          "¡Vas directo al diez!"
+        ];
+        const randomPraise = praises[Math.floor(Math.random() * praises.length)];
+        speakText(randomPraise);
+
+        // Remove from error list if present
+        state.errors = (state.errors || []).filter(id => id !== q.id);
       } else {
         state.streak = 0;
-        state.errors = state.errors || [];
-        if (!state.errors.includes(q.id)) state.errors.push(q.id);
         playAudio('wrong');
+        speakText(`Recuerda: la respuesta correcta es ${q.correct}`);
 
-        const phrase = ENCOURAGE_PHRASES[Math.floor(Math.random() * ENCOURAGE_PHRASES.length)];
-        speakText(phrase);
+        // Add to errors notebook
+        if (!state.errors) state.errors = [];
+        if (!state.errors.includes(q.id)) {
+          state.errors.push(q.id);
+        }
       }
 
+      updatePracticeStats();
       saveState();
       renderPractice();
     }
 
-    function practiceNext() {
-      if (practiceIdx < practiceList.length - 1) {
-        practiceIdx++;
-        renderPractice();
-        playAudio('click');
+    function updatePracticeStats() {
+      let correct = 0;
+      let wrong = 0;
+      Object.values(practiceSessionAnswered).forEach(a => {
+        if (a.isCorrect) correct++;
+        else wrong++;
+      });
+      setElText('stat-correct', correct);
+      setElText('stat-wrong', wrong);
+
+      // Combo badge
+      const combo = document.getElementById('practice-combo-badge');
+      if (combo) {
+        if (state.streak >= 3) {
+          combo.classList.remove('hidden');
+          combo.textContent = `🔥 Combo x${state.streak}`;
+        } else {
+          combo.classList.add('hidden');
+        }
       }
     }
 
@@ -1258,124 +1266,131 @@
       }
     }
 
+    function practiceNext() {
+      if (practiceIdx < practiceList.length - 1) {
+        practiceIdx++;
+        renderPractice();
+        playAudio('click');
+      }
+    }
+
+    function speakCurrentPracticeQuestion() {
+      const q = practiceList[practiceIdx];
+      if (q) {
+        speakText(`${q.question}. Las opciones son: ${q.options.join(', ')}`);
+      }
+    }
+
     function toggleStarCurrent() {
       const q = practiceList[practiceIdx];
       if (!q) return;
-      state.starred = state.starred || [];
-      const pos = state.starred.indexOf(q.id);
-      if (pos >= 0) state.starred.splice(pos, 1);
-      else state.starred.push(q.id);
+      if (!state.starred) state.starred = [];
+      const idx = state.starred.indexOf(q.id);
+      if (idx >= 0) {
+        state.starred.splice(idx, 1);
+      } else {
+        state.starred.push(q.id);
+      }
       saveState();
       renderPractice();
       playAudio('click');
     }
 
-    function speakCurrentPracticeQuestion() {
-      const q = practiceList[practiceIdx];
-      if (!q) return;
-      let txt = q.question;
-      if (practiceSessionAnswered[q.id] !== undefined) {
-        txt += `. La respuesta correcta es: ${q.correct}`;
-      }
-      speakText(txt);
-    }
-
-    function updateStatsDisplay() {
-      const answeredKeys = Object.keys(state.answered || {});
-      let correct = 0;
-      let wrong = 0;
-      answeredKeys.forEach(k => {
-        if (state.answered[k]) correct++;
-        else wrong++;
-      });
-      setElText('stat-correct', correct);
-      setElText('stat-wrong', wrong);
-    }
-
-    // ==================== MINIJUEGO DE PAREJAS ====================
+    // ==================== MINIJUEGO DE PAREJAS ANATÓMICAS ====================
     let gameCards = [];
-    let gameFlipped = [];
-    let gameMatched = 0;
-    let gameStartTime = null;
+    let gameSelected = [];
+    let gameMatches = 0;
+    let gameTimer = 0;
     let gameInterval = null;
+
+    const ANATOMY_PAIRS = [
+      { term: "Plano Frontal", def: "Divide en Anterior y Posterior" },
+      { term: "Plano Sagital", def: "Divide en Derecha e Izquierda" },
+      { term: "Plano Transversal", def: "Divide en Superior e Inferior" },
+      { term: "Abducción (ABD)", def: "Aleja de la línea media" },
+      { term: "Aducción (ADD)", def: "Acerca a la línea media" },
+      { term: "Decúbito Supino", def: "Boca arriba (Súplica)" },
+      { term: "Decúbito Prono", def: "Boca abajo (Prostrado)" },
+      { term: "Osteoblasto", def: "Célula que forma hueso nuevo" },
+      { term: "Osteoclasto", def: "Célula que reabsorbe y destruye hueso" },
+      { term: "Receptor Krause", def: "Sensible al frío" },
+      { term: "Receptor Ruffini", def: "Sensible al calor y estiramiento" },
+      { term: "Hematopoyesis", def: "Producción de células sanguíneas en médula roja" }
+    ];
 
     function initMemoryGame() {
       if (gameInterval) clearInterval(gameInterval);
+      gameMatches = 0;
+      gameSelected = [];
+      gameTimer = 0;
+      setElText('game-matches-found', 0);
       setElText('game-timer', '00:00');
-      gameMatched = 0;
-      setElText('game-matches-found', '0');
-      setElText('game-matches-total', '6');
-      gameFlipped = [];
 
-      const shuffledPairs = [...GAME_PAIRS].sort(() => Math.random() - 0.5).slice(0, 6);
+      // Pick 6 random pairs
+      const shuffledPairs = [...ANATOMY_PAIRS].sort(() => 0.5 - Math.random()).slice(0, 6);
       gameCards = [];
-      shuffledPairs.forEach((p, pairId) => {
-        gameCards.push({ id: `term-${pairId}`, pairId: pairId, text: p.term, type: 'term', matched: false });
-        gameCards.push({ id: `match-${pairId}`, pairId: pairId, text: p.match, type: 'match', matched: false });
+      shuffledPairs.forEach((pair, idx) => {
+        gameCards.push({ id: idx, text: pair.term, type: 'term', pairId: idx });
+        gameCards.push({ id: idx, text: pair.def, type: 'def', pairId: idx });
       });
-      gameCards.sort(() => Math.random() - 0.5);
+      gameCards.sort(() => 0.5 - Math.random());
 
-      gameStartTime = Date.now();
-      gameInterval = setInterval(() => {
-        const sec = Math.floor((Date.now() - gameStartTime) / 1000);
-        const m = String(Math.floor(sec / 60)).padStart(2, '0');
-        const s = String(sec % 60).padStart(2, '0');
-        setElText('game-timer', `${m}:${s}`);
-      }, 1000);
-
-      renderGameBoard();
-    }
-
-    function renderGameBoard() {
       const grid = document.getElementById('game-board-grid');
-      if (!grid) return;
-      grid.innerHTML = gameCards.map((card, idx) => {
-        const isSelected = gameFlipped.includes(idx);
-        let borderClass = "border-slate-200 dark:border-darkborder bg-white dark:bg-darksurface text-slate-800 dark:text-slate-100";
-        if (card.matched) {
-          borderClass = "border-emerald-500 bg-emerald-500/15 text-emerald-600 dark:text-emerald-300 opacity-60 scale-95 pointer-events-none";
-        } else if (isSelected) {
-          borderClass = "border-amber-500 bg-amber-500/20 text-amber-600 dark:text-amber-300 ring-2 ring-amber-500 scale-105";
-        }
-        return `
-          <button onclick="onCardClick(${idx})" ${card.matched ? 'disabled' : ''} class="p-2 sm:p-3 rounded-2xl border-2 ${borderClass} font-bold text-xs sm:text-sm flex items-center justify-center text-center shadow-sm transition-all transform duration-150 leading-snug select-none">
-            ${card.text}
+      if (grid) {
+        grid.innerHTML = gameCards.map((c, i) => `
+          <button id="gcard-${i}" onclick="handleGameCardClick(${i})" class="h-20 sm:h-24 p-2 rounded-2xl border border-slate-200 dark:border-darkborder bg-slate-50 dark:bg-darksurface text-slate-800 dark:text-slate-200 hover:border-brand-500 flex items-center justify-center text-center font-bold text-xs sm:text-sm shadow-sm transition active:scale-95 leading-tight">
+            ${c.text}
           </button>
-        `;
-      }).join('');
+        `).join('');
+      }
+
+      gameInterval = setInterval(() => {
+        gameTimer++;
+        const mins = String(Math.floor(gameTimer / 60)).padStart(2, '0');
+        const secs = String(gameTimer % 60).padStart(2, '0');
+        setElText('game-timer', `${mins}:${secs}`);
+      }, 1000);
     }
 
-    function onCardClick(idx) {
-      if (gameFlipped.length >= 2 || gameFlipped.includes(idx) || gameCards[idx].matched) return;
-      gameFlipped.push(idx);
+    function handleGameCardClick(index) {
+      const card = gameCards[index];
+      const btn = document.getElementById(`gcard-${index}`);
+      if (!card || !btn || btn.disabled || gameSelected.length >= 2 || gameSelected.some(s => s.index === index)) return;
+
+      btn.className = "h-20 sm:h-24 p-2 rounded-2xl border-2 border-brand-500 bg-brand-500/20 text-brand-600 dark:text-brand-300 flex items-center justify-center text-center font-extrabold text-xs sm:text-sm shadow-lg scale-105 transition leading-tight";
+      gameSelected.push({ index, card, btn });
       playAudio('click');
-      renderGameBoard();
 
-      if (gameFlipped.length === 2) {
-        const c1 = gameCards[gameFlipped[0]];
-        const c2 = gameCards[gameFlipped[1]];
-        if (c1.pairId === c2.pairId && c1.type !== c2.type) {
-          c1.matched = true;
-          c2.matched = true;
-          gameMatched++;
-          setElText('game-matches-found', gameMatched);
-          playAudio('match');
-          addXP(25);
-          gameFlipped = [];
-          renderGameBoard();
-
-          if (gameMatched === 6) {
-            clearInterval(gameInterval);
-            confetti({ particleCount: 100, spread: 80 });
-            playAudio('levelup');
-            speakText("¡Impresionante! Has emparejado todos los términos a la perfección.");
-          }
-        } else {
-          playAudio('wrong');
+      if (gameSelected.length === 2) {
+        const [first, second] = gameSelected;
+        if (first.card.pairId === second.card.pairId && first.card.type !== second.card.type) {
+          // MATCH!
           setTimeout(() => {
-            gameFlipped = [];
-            renderGameBoard();
-          }, 800);
+            first.btn.className = "h-20 sm:h-24 p-2 rounded-2xl border-2 border-emerald-500 bg-emerald-500/20 text-emerald-600 dark:text-emerald-400 flex items-center justify-center text-center font-extrabold text-xs sm:text-sm shadow-md transition opacity-80 cursor-default leading-tight";
+            second.btn.className = "h-20 sm:h-24 p-2 rounded-2xl border-2 border-emerald-500 bg-emerald-500/20 text-emerald-600 dark:text-emerald-400 flex items-center justify-center text-center font-extrabold text-xs sm:text-sm shadow-md transition opacity-80 cursor-default leading-tight";
+            first.btn.disabled = true;
+            second.btn.disabled = true;
+            gameMatches++;
+            setElText('game-matches-found', gameMatches);
+            playAudio('match');
+            addXP(20);
+            gameSelected = [];
+
+            if (gameMatches === 6) {
+              clearInterval(gameInterval);
+              confetti({ particleCount: 100, spread: 80 });
+              playAudio('levelup');
+              speakText(`¡Excelente memoria! Has completado el tablero en ${gameTimer} segundos.`);
+            }
+          }, 300);
+        } else {
+          // MISMATCH
+          setTimeout(() => {
+            first.btn.className = "h-20 sm:h-24 p-2 rounded-2xl border border-slate-200 dark:border-darkborder bg-slate-50 dark:bg-darksurface text-slate-800 dark:text-slate-200 flex items-center justify-center text-center font-bold text-xs sm:text-sm shadow-sm transition leading-tight";
+            second.btn.className = "h-20 sm:h-24 p-2 rounded-2xl border border-slate-200 dark:border-darkborder bg-slate-50 dark:bg-darksurface text-slate-800 dark:text-slate-200 flex items-center justify-center text-center font-bold text-xs sm:text-sm shadow-sm transition leading-tight";
+            playAudio('wrong');
+            gameSelected = [];
+          }, 600);
         }
       }
     }
@@ -1383,7 +1398,7 @@
     // ==================== FLASHCARDS 3D ====================
     let fcList = [...QUESTIONS];
     let fcIdx = 0;
-    let fcFlipped = false;
+    let fcIsFlipped = false;
 
     function changeFcTopic() {
       const select = document.getElementById('fc-topic-select');
@@ -1392,23 +1407,12 @@
       else fcList = QUESTIONS.filter(q => q.topic === topic);
       fcIdx = 0;
       renderFc();
-      playAudio('click');
     }
 
     function shuffleFc() {
-      fcList.sort(() => Math.random() - 0.5);
+      fcList.sort(() => 0.5 - Math.random());
       fcIdx = 0;
       renderFc();
-      playAudio('click');
-    }
-
-    function flipCurrentCard() {
-      fcFlipped = !fcFlipped;
-      const inner = document.getElementById('fc-card-inner');
-      if (inner) {
-        if (fcFlipped) inner.classList.add('rotate-y-180');
-        else inner.classList.remove('rotate-y-180');
-      }
       playAudio('click');
     }
 
@@ -1417,364 +1421,392 @@
       const q = fcList[fcIdx];
       if (!q) return;
 
-      fcFlipped = false;
-      const inner = document.getElementById('fc-card-inner');
-      if (inner) inner.classList.remove('rotate-y-180');
-
       setElText('fc-count-current', fcIdx + 1);
       setElText('fc-count-total', fcList.length);
-      setElText('fc-front-title', q.question);
 
-      const itemsEl = document.getElementById('fc-front-items');
-      if (itemsEl) {
+      const inner = document.getElementById('fc-card-inner');
+      if (inner) {
+        fcIsFlipped = false;
+        inner.classList.remove('rotate-y-180');
+      }
+
+      setElText('fc-front-title', q.question);
+      const itemsBox = document.getElementById('fc-front-items');
+      if (itemsBox) {
         if (q.items && q.items.length) {
-          itemsEl.classList.remove('hidden');
-          itemsEl.innerHTML = q.items.map(it => `<div>• ${it}</div>`).join('');
+          itemsBox.classList.remove('hidden');
+          itemsBox.innerHTML = q.items.map(it => `<div>• ${it}</div>`).join('');
         } else {
-          itemsEl.classList.add('hidden');
+          itemsBox.classList.add('hidden');
         }
       }
 
       setElText('fc-back-ans', `✓ ${q.correct}`);
-      setElText('fc-back-exp', q.explanation || 'Respuesta del banco oficial de morfofisiología.');
-      
-      const mnemEl = document.getElementById('fc-back-mnem');
-      if (mnemEl) {
+      setElText('fc-back-exp', q.explanation || 'Respuesta oficial del banco.');
+      const mnem = document.getElementById('fc-back-mnem');
+      if (mnem) {
         if (q.mnemonic) {
-          mnemEl.classList.remove('hidden');
-          mnemEl.innerHTML = `💡 <strong>Mnemotecnia:</strong> ${q.mnemonic}`;
+          mnem.classList.remove('hidden');
+          mnem.textContent = q.mnemonic;
         } else {
-          mnemEl.classList.add('hidden');
+          mnem.classList.add('hidden');
         }
+      }
+    }
+
+    function flipCurrentCard() {
+      const inner = document.getElementById('fc-card-inner');
+      if (inner) {
+        fcIsFlipped = !fcIsFlipped;
+        if (fcIsFlipped) inner.classList.add('rotate-y-180');
+        else inner.classList.remove('rotate-y-180');
+        playAudio('click');
+      }
+    }
+
+    function rateCard(rating) {
+      addXP(10);
+      playAudio('click');
+      fcNextCard();
+    }
+
+    function fcPrev() {
+      if (fcIdx > 0) {
+        fcIdx--;
+        renderFc();
+        playAudio('click');
+      }
+    }
+
+    function fcNextCard() {
+      if (fcIdx < fcList.length - 1) {
+        fcIdx++;
+        renderFc();
+        playAudio('click');
+      } else {
+        fcIdx = 0;
+        renderFc();
       }
     }
 
     function speakCurrentFlashcard() {
       const q = fcList[fcIdx];
-      if (!q) return;
-      if (!fcFlipped) speakText(q.question);
-      else speakText(`Respuesta correcta: ${q.correct}. ${q.explanation}`);
-    }
-
-    function rateCard(rate) {
-      const q = fcList[fcIdx];
-      if (!q) return;
-      if (rate === 'easy') {
-        addXP(15);
-        playAudio('correct');
-      } else if (rate === 'hard') {
-        state.errors = state.errors || [];
-        if (!state.errors.includes(q.id)) state.errors.push(q.id);
-        saveState();
-      }
-      fcNextCard();
-    }
-
-    function fcNextCard() {
-      fcIdx = (fcIdx < fcList.length - 1) ? fcIdx + 1 : 0;
-      renderFc();
-    }
-
-    function fcPrev() {
-      fcIdx = (fcIdx > 0) ? fcIdx - 1 : fcList.length - 1;
-      renderFc();
+      if (q) speakText(q.question);
     }
 
     // ==================== SIMULADOR DE EXAMEN ====================
     let examCount = 20;
-    let examQs = [];
+    let examQuestions = [];
     let examIdx = 0;
     let examAnswers = {};
-    let examTimer = null;
-    let examRemainingSecs = 0;
+    let examTimerSecs = 15 * 60;
+    let examInterval = null;
 
-    function setExamQuestionsCount(cnt) {
-      examCount = cnt;
+    function setExamQuestionsCount(count) {
+      examCount = count;
       document.querySelectorAll('.ebtn').forEach(b => {
-        b.className = "ebtn p-2.5 rounded-2xl border border-slate-200 dark:border-darkborder bg-slate-50 dark:bg-darksurface text-slate-600 dark:text-slate-300 text-xs font-bold";
+        b.className = "ebtn p-2.5 rounded-2xl border border-slate-200 dark:border-darkborder bg-slate-50 dark:bg-darksurface text-slate-600 dark:text-slate-300";
       });
-      const active = document.getElementById('ebtn-' + cnt);
-      if (active) {
-        active.className = "ebtn p-2.5 rounded-2xl border-2 border-brand-500 bg-brand-500/10 text-brand-600 dark:text-brand-300 text-xs font-bold";
-      }
+      const act = document.getElementById(`ebtn-${count}`);
+      if (act) act.className = "ebtn p-2.5 rounded-2xl border-2 border-brand-500 bg-brand-500/10 text-brand-600 dark:text-brand-300";
       playAudio('click');
     }
 
     function launchExam() {
-      const shuffled = [...QUESTIONS].sort(() => Math.random() - 0.5);
-      examQs = shuffled.slice(0, Math.min(examCount, QUESTIONS.length));
-      examQs.forEach(q => {
-        q._examShuffled = [...q.options].sort(() => Math.random() - 0.5);
-      });
+      examQuestions = [...QUESTIONS].sort(() => 0.5 - Math.random()).slice(0, examCount);
       examIdx = 0;
       examAnswers = {};
+      examTimerSecs = (examCount === 20 ? 15 : examCount === 50 ? 35 : 90) * 60;
 
-      const setupCard = document.getElementById('exam-card-setup');
-      if (setupCard) setupCard.classList.add('hidden');
-      const actCard = document.getElementById('exam-card-active');
-      if (actCard) actCard.classList.remove('hidden');
+      const setup = document.getElementById('exam-card-setup');
+      const active = document.getElementById('exam-card-active');
+      const result = document.getElementById('exam-card-result');
+      if (setup) setup.classList.add('hidden');
+      if (result) result.classList.add('hidden');
+      if (active) active.classList.remove('hidden');
 
-      examRemainingSecs = examCount === 20 ? 15 * 60 : (examCount === 50 ? 35 * 60 : 90 * 60);
-      if (examTimer) clearInterval(examTimer);
-      examTimer = setInterval(() => {
-        examRemainingSecs--;
-        const m = String(Math.floor(examRemainingSecs / 60)).padStart(2, '0');
-        const s = String(examRemainingSecs % 60).padStart(2, '0');
-        setElText('exam-timer-display', `${m}:${s}`);
-        if (examRemainingSecs <= 0) {
-          clearInterval(examTimer);
+      renderExamPalette();
+      renderExamQuestion();
+
+      if (examInterval) clearInterval(examInterval);
+      examInterval = setInterval(() => {
+        examTimerSecs--;
+        if (examTimerSecs <= 0) {
+          clearInterval(examInterval);
           finishExam();
         }
+        const mins = String(Math.floor(examTimerSecs / 60)).padStart(2, '0');
+        const secs = String(examTimerSecs % 60).padStart(2, '0');
+        setElText('exam-timer-display', `${mins}:${secs}`);
       }, 1000);
 
-      renderExamQuestion();
-      playAudio('click');
+      speakText("Iniciando simulacro de examen. ¡Mucho éxito!");
+    }
+
+    function renderExamPalette() {
+      const p = document.getElementById('exam-palette');
+      if (p) {
+        p.innerHTML = examQuestions.map((_, i) => `
+          <button onclick="gotoExamQ(${i})" id="ep-btn-${i}" class="w-6 h-6 rounded-lg font-bold text-[10px] flex items-center justify-center border border-slate-200 dark:border-darkborder bg-slate-100 dark:bg-darksurface text-slate-600 dark:text-slate-300">
+            ${i+1}
+          </button>
+        `).join('');
+      }
     }
 
     function renderExamQuestion() {
-      if (!examQs.length) return;
-      const q = examQs[examIdx];
-      setElText('exam-indicator', `Pregunta ${examIdx + 1} de ${examQs.length}`);
+      const q = examQuestions[examIdx];
+      if (!q) return;
+
+      setElText('exam-indicator', `Pregunta ${examIdx + 1} de ${examQuestions.length}`);
       setElText('exam-q-topic', q.topic);
       setElText('exam-q-title', q.question);
 
-      const itemsEl = document.getElementById('exam-q-items');
-      if (itemsEl) {
+      const itemsBox = document.getElementById('exam-q-items');
+      if (itemsBox) {
         if (q.items && q.items.length) {
-          itemsEl.classList.remove('hidden');
-          itemsEl.innerHTML = q.items.map(it => `<div>• ${it}</div>`).join('');
+          itemsBox.classList.remove('hidden');
+          itemsBox.innerHTML = q.items.map(it => `<div>• ${it}</div>`).join('');
         } else {
-          itemsEl.classList.add('hidden');
+          itemsBox.classList.add('hidden');
         }
       }
 
-      const optionsGrid = document.getElementById('exam-options-grid');
-      if (optionsGrid) {
-        optionsGrid.innerHTML = q._examShuffled.map(opt => {
-          const isChosen = examAnswers[q.id] === opt;
-          const btnClass = isChosen 
-            ? "w-full text-left p-2.5 sm:p-3 rounded-2xl border-2 border-brand-500 bg-brand-500/15 text-brand-700 dark:text-brand-300 font-bold text-xs sm:text-sm shadow-md"
-            : "w-full text-left p-2.5 sm:p-3 rounded-2xl border border-slate-200 dark:border-darkborder bg-white dark:bg-darksurface text-slate-800 dark:text-white font-semibold text-xs sm:text-sm hover:border-brand-400 shadow-sm";
+      const grid = document.getElementById('exam-options-grid');
+      if (grid) {
+        const letters = ['A', 'B', 'C', 'D', 'E'];
+        const chosen = examAnswers[examIdx];
+        grid.innerHTML = q.options.map((opt, i) => {
+          const isSelected = (chosen === opt);
+          const btnClass = isSelected
+            ? "option-btn w-full p-2.5 sm:p-3 rounded-2xl border-2 border-brand-500 bg-brand-500/20 text-brand-600 dark:text-brand-300 font-bold flex items-start gap-2 text-xs sm:text-sm shadow-md"
+            : "option-btn w-full p-2.5 sm:p-3 rounded-2xl border border-slate-200 dark:border-darkborder bg-white dark:bg-darksurface text-slate-800 dark:text-slate-100 hover:border-brand-500 flex items-start gap-2 text-xs sm:text-sm shadow-sm";
+
           return `
-            <button onclick="pickExamAnswer('${opt.replace(/'/g, "\'")}')" class="${btnClass}">
-              ${opt}
+            <button onclick="selectExamOption('${opt.replace(/'/g, "\'")}')" class="${btnClass}">
+              <span class="w-5 h-5 rounded-md bg-slate-200 dark:bg-slate-700 flex items-center justify-center font-bold text-[10px] flex-shrink-0">
+                ${letters[i] || (i+1)}
+              </span>
+              <span class="flex-1">${opt}</span>
             </button>
           `;
         }).join('');
       }
 
-      const palette = document.getElementById('exam-palette');
-      if (palette) {
-        palette.innerHTML = examQs.map((eq, i) => {
-          const isAns = examAnswers[eq.id] !== undefined;
-          const isCurr = i === examIdx;
-          let pclass = "w-6 h-6 rounded-lg text-[10px] font-bold flex items-center justify-center flex-shrink-0 transition ";
-          if (isCurr) pclass += "ring-2 ring-brand-500 bg-brand-600 text-white";
-          else if (isAns) pclass += "bg-emerald-500 text-white";
-          else pclass += "bg-slate-200 dark:bg-darksurface text-slate-500";
-          return `<button onclick="jumpExamQuestion(${i})" class="${pclass}">${i+1}</button>`;
-        }).join('');
-      }
+      // Update palette styling
+      examQuestions.forEach((_, i) => {
+        const pBtn = document.getElementById(`ep-btn-${i}`);
+        if (pBtn) {
+          if (i === examIdx) {
+            pBtn.className = "w-6 h-6 rounded-lg font-bold text-[10px] flex items-center justify-center border-2 border-brand-500 bg-brand-500 text-white scale-110";
+          } else if (examAnswers[i] !== undefined) {
+            pBtn.className = "w-6 h-6 rounded-lg font-bold text-[10px] flex items-center justify-center border border-emerald-500 bg-emerald-500/20 text-emerald-500";
+          } else {
+            pBtn.className = "w-6 h-6 rounded-lg font-bold text-[10px] flex items-center justify-center border border-slate-200 dark:border-darkborder bg-slate-100 dark:bg-darksurface text-slate-600 dark:text-slate-300";
+          }
+        }
+      });
     }
 
-    function pickExamAnswer(opt) {
-      const q = examQs[examIdx];
-      if (!q) return;
-      examAnswers[q.id] = opt;
+    function selectExamOption(opt) {
+      examAnswers[examIdx] = opt;
       playAudio('click');
       renderExamQuestion();
     }
 
-    function jumpExamQuestion(idx) {
-      examIdx = idx;
+    function gotoExamQ(index) {
+      examIdx = index;
       renderExamQuestion();
       playAudio('click');
-    }
-
-    function examNavNext() {
-      if (examIdx < examQs.length - 1) {
-        examIdx++;
-        renderExamQuestion();
-      } else {
-        submitExamPrompt();
-      }
     }
 
     function examNavPrev() {
       if (examIdx > 0) {
         examIdx--;
         renderExamQuestion();
+        playAudio('click');
+      }
+    }
+
+    function examNavNext() {
+      if (examIdx < examQuestions.length - 1) {
+        examIdx++;
+        renderExamQuestion();
+        playAudio('click');
       }
     }
 
     function submitExamPrompt() {
       const answeredCount = Object.keys(examAnswers).length;
-      if (confirm(`Has respondido ${answeredCount} de ${examQs.length} preguntas. ¿Deseas entregar el examen?`)) {
-        finishExam();
+      if (answeredCount < examQuestions.length) {
+        if (!confirm(`Has respondido ${answeredCount} de ${examQuestions.length} preguntas. ¿Seguro que deseas entregar el examen?`)) {
+          return;
+        }
       }
+      finishExam();
     }
 
     function finishExam() {
-      if (examTimer) clearInterval(examTimer);
+      if (examInterval) clearInterval(examInterval);
       let correct = 0;
-      examQs.forEach(q => {
-        if (examAnswers[q.id] === q.correct) correct++;
+      examQuestions.forEach((q, idx) => {
+        if (examAnswers[idx] === q.correct) correct++;
         else {
-          state.errors = state.errors || [];
+          if (!state.errors) state.errors = [];
           if (!state.errors.includes(q.id)) state.errors.push(q.id);
         }
       });
 
-      const total = examQs.length;
+      const total = examQuestions.length;
       const score = ((correct / total) * 10).toFixed(1);
-      const isPassed = parseFloat(score) >= 7.0;
+      const passed = (score >= 7.0);
 
-      const actCard = document.getElementById('exam-card-active');
-      if (actCard) actCard.classList.add('hidden');
-      const resCard = document.getElementById('exam-card-result');
-      if (resCard) resCard.classList.remove('hidden');
+      const active = document.getElementById('exam-card-active');
+      const result = document.getElementById('exam-card-result');
+      if (active) active.classList.add('hidden');
+      if (result) result.classList.remove('hidden');
 
       setElText('exam-res-student-name', state.name || 'Estudiante');
       setElText('exam-res-score', `${score} / 10`);
       setElText('exam-res-correct', correct);
       setElText('exam-res-wrong', total - correct);
-      
-      const statusEl = document.getElementById('exam-res-status');
-      const iconEl = document.getElementById('exam-res-icon');
-      if (statusEl) {
-        statusEl.textContent = isPassed ? '✓ APROBADO' : '✗ REPROBADO';
-        statusEl.className = isPassed ? 'text-xs font-bold text-emerald-500' : 'text-xs font-bold text-rose-500';
-      }
-      if (iconEl) iconEl.textContent = isPassed ? '🎉' : '📚';
 
-      if (isPassed) {
-        confetti({ particleCount: 90, spread: 70 });
+      const status = document.getElementById('exam-res-status');
+      const icon = document.getElementById('exam-res-icon');
+      if (passed) {
+        if (status) {
+          status.className = "text-xs font-bold text-emerald-500";
+          status.textContent = "✓ APROBADO CON ÉXITO";
+        }
+        if (icon) icon.textContent = "🏆";
+        confetti({ particleCount: 120, spread: 80 });
         playAudio('levelup');
-        speakText(`¡Felicidades ${state.name}! Has aprobado tu examen con nota de ${score} sobre 10.`);
+        addXP(correct * 10);
+        speakText(`¡Felicidades ${state.name}! Has aprobado con una nota de ${score}.`);
       } else {
+        if (status) {
+          status.className = "text-xs font-bold text-rose-500";
+          status.textContent = "✗ REPROBADO - REFUERZA TUS TEMAS";
+        }
+        if (icon) icon.textContent = "📚";
         playAudio('wrong');
-        speakText(`Examen finalizado ${state.name}. Tu nota es ${score}. Te recomiendo revisar tu cuaderno de errores.`);
+        speakText(`Has obtenido ${score}. No te desanimes, revisa tus errores y repite el examen.`);
       }
 
-      addXP(correct * 10);
       saveState();
     }
 
     function resetExamSetup() {
-      const resCard = document.getElementById('exam-card-result');
-      if (resCard) resCard.classList.add('hidden');
-      const setupCard = document.getElementById('exam-card-setup');
-      if (setupCard) setupCard.classList.remove('hidden');
+      const setup = document.getElementById('exam-card-setup');
+      const result = document.getElementById('exam-card-result');
+      if (result) result.classList.add('hidden');
+      if (setup) setup.classList.remove('hidden');
     }
 
-    // ==================== BANCO COMPLETO & SEARCH ====================
-    function searchBank() {
-      const input = document.getElementById('bank-search-query');
-      const q = input ? input.value.toLowerCase() : '';
-      renderBank(QUESTIONS.filter(x => x.question.toLowerCase().includes(q) || x.correct.toLowerCase().includes(q)));
-    }
+    // ==================== BANCO COMPLETO Y ERRORES ====================
+    function renderBank() {
+      const list = document.getElementById('bank-scroll-list');
+      const query = (document.getElementById('bank-search-query')?.value || '').toLowerCase().trim();
+      if (!list) return;
 
-    function renderBank(list = QUESTIONS) {
-      const container = document.getElementById('bank-scroll-list');
-      if (!container) return;
-      container.innerHTML = list.map(q => `
-        <div class="p-3 rounded-2xl bg-white dark:bg-darkcard border border-slate-200 dark:border-darkborder text-xs space-y-1.5 shadow-sm">
-          <div class="flex items-center justify-between text-[10px] font-bold text-slate-400">
-            <span class="px-2 py-0.5 rounded-md bg-brand-500/10 text-brand-500">#${q.id}</span>
-            <div class="flex items-center gap-2">
-              <span>${q.topic}</span>
-              <button onclick="speakText('${q.question.replace(/'/g, "")}. Respuesta: ${q.correct.replace(/'/g, "")}')" class="text-brand-500 hover:text-brand-400">🔊</button>
-            </div>
+      const filtered = QUESTIONS.filter(q => {
+        if (!query) return true;
+        return q.question.toLowerCase().includes(query) 
+            || q.topic.toLowerCase().includes(query)
+            || q.options.some(o => o.toLowerCase().includes(query))
+            || String(q.id) === query;
+      });
+
+      list.innerHTML = filtered.map(q => `
+        <div class="p-3 bg-white/90 dark:bg-darkcard/90 backdrop-blur-sm border border-slate-200 dark:border-darkborder rounded-2xl space-y-1.5 shadow-sm text-xs">
+          <div class="flex items-center justify-between text-[11px] font-bold">
+            <span class="text-brand-500">Pregunta #${q.id}</span>
+            <span class="text-slate-400">${q.topic}</span>
           </div>
-          <div class="font-bold text-slate-900 dark:text-white">${q.question}</div>
-          <div class="text-emerald-600 dark:text-emerald-400 font-semibold">✓ ${q.correct}</div>
-          <div class="text-[11px] text-slate-500 dark:text-slate-400 italic">${q.explanation}</div>
+          <p class="font-bold text-slate-800 dark:text-slate-100">${q.question}</p>
+          <div class="p-2 rounded-xl bg-emerald-500/10 border border-emerald-500/20 text-emerald-700 dark:text-emerald-300 font-semibold">
+            ✓ ${q.correct}
+          </div>
+          ${q.explanation ? `<div class="text-slate-500 dark:text-slate-400 text-[11px] leading-snug">${q.explanation}</div>` : ''}
         </div>
       `).join('');
     }
 
-    // ==================== ERRORES LOGIC ====================
-    function renderErrors() {
-      const container = document.getElementById('errors-scroll-list');
-      if (!container) return;
-      const errQs = QUESTIONS.filter(q => (state.errors || []).includes(q.id));
-      setElText('errors-count-heading', errQs.length);
+    function searchBank() {
+      renderBank();
+    }
 
-      if (!errQs.length) {
-        container.innerHTML = `<div class="p-8 text-center text-slate-400 text-xs">🎉 ¡No tienes errores registrados! Todo dominado.</div>`;
+    function renderErrors() {
+      const list = document.getElementById('errors-scroll-list');
+      if (!list) return;
+
+      const errQuestions = QUESTIONS.filter(q => (state.errors || []).includes(q.id));
+      setElText('errors-count-heading', errQuestions.length);
+
+      if (!errQuestions.length) {
+        list.innerHTML = `
+          <div class="p-8 text-center bg-white/50 dark:bg-darkcard/50 rounded-3xl border border-dashed border-slate-300 dark:border-darkborder space-y-2">
+            <div class="text-3xl">🎉</div>
+            <div class="text-sm font-bold">¡Tu cuaderno de errores está limpio!</div>
+            <div class="text-xs text-slate-400">Cuando falles alguna pregunta en la práctica o examen, aparecerá aquí para repasarla.</div>
+          </div>
+        `;
         return;
       }
 
-      container.innerHTML = errQs.map(q => `
-        <div class="p-3 rounded-2xl bg-white dark:bg-darkcard border-l-4 border-rose-500 border-slate-200 dark:border-darkborder text-xs space-y-1.5 shadow-sm">
-          <div class="flex items-center justify-between text-[10px] font-bold">
-            <span class="text-rose-500">#${q.id} • ${q.topic}</span>
-            <button onclick="dismissError(${q.id})" class="text-slate-400 hover:text-emerald-500 font-bold transition">✓ Ya la aprendí</button>
+      list.innerHTML = errQuestions.map(q => `
+        <div class="p-3 bg-rose-500/5 dark:bg-rose-950/20 border border-rose-500/20 rounded-2xl space-y-1.5 shadow-sm text-xs">
+          <div class="flex items-center justify-between text-[11px] font-bold">
+            <span class="text-rose-500">Fallo en Pregunta #${q.id}</span>
+            <button onclick="removeErrorItem(${q.id})" class="text-slate-400 hover:text-rose-500 text-xs">✕ Quitar</button>
           </div>
-          <div class="font-bold text-slate-900 dark:text-white">${q.question}</div>
-          <div class="text-emerald-600 dark:text-emerald-400 font-semibold">Respuesta: ${q.correct}</div>
-          <div class="text-[11px] text-slate-500 dark:text-slate-400">${q.explanation}</div>
+          <p class="font-bold text-slate-800 dark:text-slate-100">${q.question}</p>
+          <div class="p-2 rounded-xl bg-emerald-500/10 border border-emerald-500/20 text-emerald-700 dark:text-emerald-300 font-semibold">
+            ✓ Respuesta correcta: ${q.correct}
+          </div>
+          ${q.explanation ? `<div class="text-slate-500 dark:text-slate-400 text-[11px]">${q.explanation}</div>` : ''}
         </div>
       `).join('');
     }
 
-    function dismissError(id) {
-      state.errors = (state.errors || []).filter(x => x !== id);
-      addXP(10);
+    function removeErrorItem(id) {
+      state.errors = (state.errors || []).filter(e => e !== id);
       saveState();
       renderErrors();
-      playAudio('correct');
+      playAudio('click');
     }
 
     function clearAllErrors() {
-      if (confirm('¿Limpiar todo el cuaderno de errores?')) {
+      if (confirm('¿Deseas limpiar todos los errores de tu cuaderno?')) {
         state.errors = [];
         saveState();
         renderErrors();
+        playAudio('click');
       }
     }
 
-    // Keyboard Shortcuts
-    document.addEventListener('keydown', (e) => {
-      const modal = document.getElementById('modal-onboarding');
-      if (modal && !modal.classList.contains('hidden')) return;
+    // ==================== APP INITIALIZATION ====================
+    window.addEventListener('DOMContentLoaded', () => {
+      initVoice();
 
-      if (currentTab === 'practice') {
-        const q = practiceList[practiceIdx];
-        if (['1', '2', '3', '4', '5'].includes(e.key) && q && q._shuffled) {
-          const idx = parseInt(e.key) - 1;
-          if (idx < q._shuffled.length && practiceSessionAnswered[q.id] === undefined) {
-            answerPractice(q._shuffled[idx]);
-          }
-        } else if (e.key === 'ArrowRight') practiceNext();
-        else if (e.key === 'ArrowLeft') practicePrev();
-      } else if (currentTab === 'flashcards') {
-        if (e.code === 'Space') {
-          e.preventDefault();
-          flipCurrentCard();
-        } else if (e.key === 'ArrowRight') flipCurrentCard();
-        else if (e.key === 'ArrowLeft') fcPrev();
+      // Check theme
+      if (localStorage.theme === 'light') {
+        document.documentElement.classList.remove('dark');
+      } else {
+        document.documentElement.classList.add('dark');
       }
-    });
 
-    // Initialize on Load
-    document.addEventListener('DOMContentLoaded', () => {
-      initVoices();
-      if (localStorage.theme === 'light') document.documentElement.classList.remove('dark');
-      
-      const modal = document.getElementById('modal-onboarding');
-      if (modal) {
-        if (!state.name) {
-          renderExistingProfiles();
-          modal.classList.remove('hidden');
-        } else {
-          modal.classList.add('hidden');
-        }
+      // Check User Profile
+      if (state.name) {
+        const modal = document.getElementById('modal-onboarding');
+        if (modal) modal.classList.add('hidden');
+        updateUserHeader();
+        renderPractice();
+        renderFc();
+      } else {
+        renderExistingProfiles();
       }
-      
-      updateUserHeader();
-      renderPractice();
-      renderFc();
+
       saveState();
     });
   </script>
